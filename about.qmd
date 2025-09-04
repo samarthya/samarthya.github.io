@@ -1,0 +1,86 @@
+---
+title: "About Me"
+format:
+    html:
+        theme: journal
+        toc: true
+        css: styles.css
+---
+
+## Professional Overview
+
+I am Saurabh, a seasoned software management professional with over 20 years of experience in the technology industry. As a certified PMP, Scrum, and SAFe practitioner, I've dedicated my career to building and leading high-performing software teams across multiple geographies and business domains.
+
+## Areas of Expertise
+
+### Leadership & Management
+- Building and managing cross-geographic development teams
+- Agile project management and process optimization
+- Product lifecycle management
+- Remote team management and coordination
+
+### Technical Domains
+- Security systems
+- Location intelligence
+- Infrastructure management
+- Software product development
+- Quality assurance and process improvement
+
+## Professional Philosophy
+
+I specialize in:
+
+- Defining sustainable and repeatable integrated processes
+- Establishing measurable quality metrics
+- Creating effective team communication frameworks
+- Implementing agile methodologies at scale
+- Building robust software products from conception to delivery
+
+## Current Focus
+
+I currently manage multiple remote teams, emphasizing:
+
+- Daily stand-ups for effective communication
+- Status monitoring through information dashboards
+- Rally-based project management
+- Continuous process improvement
+- Quality-driven development practices
+
+## Certifications
+- Project Management Professional (PMP)
+- Scrum Certified
+- SAFe Certified
+
+## Connect With Me {.mt-4}
+
+::: {.grid}
+
+::: {.g-col-12 .social-links}
+- <i class="fas fa-envelope"></i> [Email](mailto:mailme@samarthya.me)
+- <i class="fab fa-linkedin"></i> [LinkedIn](https://linkedin.com/in/samarthyasaurabh)
+- <i class="fas fa-blog"></i> [Blog](https://blog.samarthya.me)
+- <i class="fas fa-globe"></i> [Website](https://samarthya.me)
+- <i class="fab fa-github"></i> [GitHub](https://github.com/samarthya)
+:::
+
+:::
+
+## Location
+
+Based in Boston, USA.
+
+::: {.callout-note}
+## Professional Interests
+I'm always interested in connecting with fellow technology professionals and discussing opportunities for collaboration in software development, team building, and process improvement.
+:::
+
+## Blog & Technical Writing
+
+I maintain a technical blog where I share insights about:
+- Software architecture and design
+- Team management practices
+- Technology trends and innovations
+- Best practices in software development
+- Agile methodologies and implementation
+
+Visit my [blog](https://blog.samarthya.me) to read more about my technical insights and experiences in the software industry.
