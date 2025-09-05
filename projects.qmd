@@ -1,0 +1,50 @@
+---
+title: "Projects"
+format:
+  html:
+    page-layout: full
+---
+
+```{python}
+#| echo: false
+#| output: asis
+
+import requests
+import json
+from datetime import datetime
+
+def fetch_github_repos(username="samarthya"):
+    url = f"https://api.github.com/users/{username}/repos"
+    response = requests.get(url)
+    if response.status_code == 200:
+        repos = response.json()
+        # Sort by stars and get top 5
+        return sorted(repos, key=lambda x: (x['stargazers_count'], x['forks_count']), reverse=True)[:5]
+    return []
+
+repos = fetch_github_repos()
+
+# Print the projects in a grid layout
+print('<div class="projects-grid">')
+for repo in repos:
+    # Format date
+    updated_at = datetime.strptime(repo['updated_at'], '%Y-%m-%dT%H:%M:%SZ').strftime('%B %d, %Y')
+
+    print(f"""
+    <div class="project-card">
+        <h3><a href="{repo['html_url']}" target="_blank">{repo['name']}</a></h3>
+        <p class="description">{repo['description'] or 'No description available'}</p>
+        <div class="stats">
+            <span><i class="fas fa-star"></i> {repo['stargazers_count']}</span>
+            <span><i class="fas fa-code-branch"></i> {repo['forks_count']}</span>
+            <span><i class="fas fa-circle" style="color: {repo['language'].lower() if repo['language'] else '#888'};"></i> {repo['language'] or 'Unknown'}</span>
+        </div>
+        <div class="updated">Last updated: {updated_at}</div>
+    </div>
+    """)
+print('</div>')
+```
+
+:::{.callout-note}
+These are my top 5 GitHub repositories based on stars and forks. Click on any project to view its source code and documentation.
+:::
