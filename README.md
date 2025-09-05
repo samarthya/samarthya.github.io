@@ -4,7 +4,7 @@ This is my personal portfolio website built using [Quarto](https://quarto.org/),
 
 ## 🛠️ Project Structure
 
-```
+```bash
 samarthya.github.io/
 ├── _quarto.yml           # Main configuration file
 ├── index.qmd             # Home page
@@ -27,12 +27,14 @@ samarthya.github.io/
 ### Local Development
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/samarthya/samarthya.github.io.git
    cd samarthya.github.io
    ```
 
 2. Create and activate Python virtual environment:
+
    ```bash
    python3.12 -m venv venv
    source venv/bin/activate  # On Unix/macOS
@@ -41,6 +43,7 @@ samarthya.github.io/
    ```
 
 3. Preview the site:
+
    ```bash
    quarto preview
    ```
@@ -48,6 +51,7 @@ samarthya.github.io/
 ## 🎨 Customization
 
 ### Styling
+
 - Custom styles are defined in `styles.css`
 - The site uses the `journal` theme with Font Awesome icons
 - Layout and styling can be modified through:
@@ -55,6 +59,7 @@ samarthya.github.io/
   - Individual `.qmd` files for page-specific settings
 
 ### Adding Content
+
 1. Create new `.qmd` files for new pages
 2. Add page references to `_quarto.yml` under the `navbar` section
 3. Use Quarto's markdown extensions for rich content:
@@ -85,6 +90,7 @@ samarthya.github.io/
 The site is automatically deployed to GitHub Pages using GitHub Actions workflow defined in `.github/workflows/quartopublish.yml`.
 
 The deployment process:
+
 1. Triggers on push to the master branch
 2. Sets up Quarto environment
 3. Builds the website
@@ -93,16 +99,19 @@ The deployment process:
 ## 🔄 How to Extend
 
 ### Adding New Pages
+
 1. Create a new `.qmd` file
 2. Add YAML frontmatter with title and format
 3. Add the page to navigation in `_quarto.yml`
 
 ### Custom Components
+
 1. Add custom CSS in `styles.css`
 2. Use Quarto's div syntax for custom containers
 3. Leverage Bootstrap classes for layout
 
 ### Custom JavaScript
+
 1. Create `.js` files in a `scripts/` directory
 2. Add to `_quarto.yml` under `format.html.include-in-header`
 

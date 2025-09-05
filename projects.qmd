@@ -8,10 +8,12 @@ format:
 ```{python}
 #| echo: false
 #| output: asis
+#| raw: true
 
 import requests
 import json
 from datetime import datetime
+from IPython.display import HTML, display
 
 def fetch_github_repos(username="samarthya"):
     url = f"https://api.github.com/users/{username}/repos"
@@ -24,25 +26,37 @@ def fetch_github_repos(username="samarthya"):
 
 repos = fetch_github_repos()
 
-# Print the projects in a grid layout
-print('<div class="projects-grid">')
+# Build HTML content
+html_content = '<div class="projects-grid">'
 for repo in repos:
     # Format date
     updated_at = datetime.strptime(repo['updated_at'], '%Y-%m-%dT%H:%M:%SZ').strftime('%B %d, %Y')
 
-    print(f"""
+    # Fix language color display
+    language_color = repo['language'].lower() if repo['language'] else '#888'
+    if language_color == 'java':
+        language_color = '#b07219'  # Standard GitHub color for Java
+    elif language_color == 'python':
+        language_color = '#3572A5'  # Standard GitHub color for Python
+    elif language_color == 'javascript':
+        language_color = '#f1e05a'  # Standard GitHub color for JavaScript
+
+    html_content += f"""
     <div class="project-card">
         <h3><a href="{repo['html_url']}" target="_blank">{repo['name']}</a></h3>
         <p class="description">{repo['description'] or 'No description available'}</p>
         <div class="stats">
             <span><i class="fas fa-star"></i> {repo['stargazers_count']}</span>
             <span><i class="fas fa-code-branch"></i> {repo['forks_count']}</span>
-            <span><i class="fas fa-circle" style="color: {repo['language'].lower() if repo['language'] else '#888'};"></i> {repo['language'] or 'Unknown'}</span>
+            <span><i class="fas fa-circle" style="color: {language_color};"></i> {repo['language'] or 'Unknown'}</span>
         </div>
         <div class="updated">Last updated: {updated_at}</div>
     </div>
-    """)
-print('</div>')
+    """
+html_content += '</div>'
+
+# Display the HTML content
+display(HTML(html_content))
 ```
 
 :::{.callout-note}

@@ -2,7 +2,7 @@ project:
   type: website
   render:
     - "*.qmd"
-    - "!README.md" 
+    - "!README.md"
 
 
 website:
@@ -13,6 +13,7 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
+      - projects.qmd
 
 format:
   html:
