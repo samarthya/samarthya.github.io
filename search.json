@@ -11,14 +11,14 @@
     "href": "ad688.html",
     "title": "System Information",
     "section": "",
-    "text": "This page displays basic system information using Python."
+    "text": "This page displays basic information(AD688)"
   },
   {
     "objectID": "ad688.html#system-details",
     "href": "ad688.html#system-details",
     "title": "System Information",
     "section": "System Details",
-    "text": "System Details\n\nimport platform\nimport psutil\nimport sys\n\ndef get_size(bytes):\n    \"\"\"\n    Convert bytes to human readable format\n    \"\"\"\n    for unit in ['', 'K', 'M', 'G', 'T', 'P']:\n        if bytes &lt; 1024:\n            return f\"{bytes:.2f}{unit}B\"\n        bytes /= 1024\n\n# Basic System Information\nprint(f\"Operating System: {platform.system()}\")\nprint(f\"OS Version: {platform.version()}\")\nprint(f\"Python Version: {sys.version.split()[0]}\")\nprint(f\"Processor: {platform.processor()}\")\n\n# Memory Information\nmemory = psutil.virtual_memory()\nprint(f\"\\nTotal Memory: {get_size(memory.total)}\")\nprint(f\"Available Memory: {get_size(memory.available)}\")\n\nOperating System: Linux\nOS Version: #18~24.04.1-Ubuntu SMP Sat Jun 28 04:46:03 UTC 2025\nPython Version: 3.12.11\nProcessor: x86_64\n\nTotal Memory: 15.62GB\nAvailable Memory: 14.39GB"
+    "text": "System Details\n\nimport platform\nimport psutil\nimport sys\n\ndef get_size(bytes):\n    \"\"\"\n    Convert bytes to human readable format\n    \"\"\"\n    for unit in ['', 'K', 'M', 'G', 'T', 'P']:\n        if bytes &lt; 1024:\n            return f\"{bytes:.2f}{unit}B\"\n        bytes /= 1024\n\n# Basic System Information\nprint(f\"Operating System: {platform.system()}\")\nprint(f\"OS Version: {platform.version()}\")\nprint(f\"Python Version: {sys.version.split()[0]}\")\nprint(f\"Processor: {platform.processor()}\")\n\n# Memory Information\nmemory = psutil.virtual_memory()\nprint(f\"\\nTotal Memory: {get_size(memory.total)}\")\nprint(f\"Available Memory: {get_size(memory.available)}\")\n\nOperating System: Linux\nOS Version: #18~24.04.1-Ubuntu SMP Sat Jun 28 04:46:03 UTC 2025\nPython Version: 3.12.11\nProcessor: x86_64\n\nTotal Memory: 15.62GB\nAvailable Memory: 14.41GB"
   },
   {
     "objectID": "about.html",
