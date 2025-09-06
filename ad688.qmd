@@ -1,7 +1,12 @@
 ---
-title: "System Information"
+title: "Assignment 01"
+subtitle: "System Information Proof"
+author: Samarthya
 format:
   html:
+    theme: journal
+    toc: true
+    css: styles.css
     code-fold: false
     code-tools: true
 jupyter: python3
