@@ -7,7 +7,7 @@ format:
 jupyter: python3
 ---
 
-This page displays basic system information using Python.
+This page displays basic information(AD688)
 
 ## System Details
 
