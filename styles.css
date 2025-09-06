@@ -97,6 +97,80 @@
     color: #0056b3 !important;
 }
 
+/* Floating brand styling */
+.floating-brand {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 86, 179, 0.1);
+}
+
+.floating-brand:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.brand-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #0056b3;
+    margin-right: 12px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-weight: 600;
+    font-size: 1.1em;
+    color: #2c3e50;
+    line-height: 1.2;
+}
+
+.brand-tagline {
+    font-size: 0.8em;
+    color: #666;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .floating-brand {
+        padding: 8px;
+    }
+
+    .brand-logo {
+        width: 32px;
+        height: 32px;
+        margin-right: 8px;
+    }
+
+    .brand-name {
+        font-size: 0.9em;
+    }
+
+    .brand-tagline {
+        font-size: 0.7em;
+    }
+}
+
 /* General styling */
 body,
 .navbar,
