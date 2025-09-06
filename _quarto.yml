@@ -14,6 +14,7 @@ website:
         text: Home
       - about.qmd
       - projects.qmd
+      - ad688.qmd
 
 format:
   html:

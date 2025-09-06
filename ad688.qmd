@@ -1,0 +1,38 @@
+---
+title: "System Information"
+format:
+  html:
+    code-fold: false
+    code-tools: true
+jupyter: python3
+---
+
+This page displays basic system information using Python.
+
+## System Details
+
+```{python}
+import platform
+import psutil
+import sys
+
+def get_size(bytes):
+    """
+    Convert bytes to human readable format
+    """
+    for unit in ['', 'K', 'M', 'G', 'T', 'P']:
+        if bytes < 1024:
+            return f"{bytes:.2f}{unit}B"
+        bytes /= 1024
+
+# Basic System Information
+print(f"Operating System: {platform.system()}")
+print(f"OS Version: {platform.version()}")
+print(f"Python Version: {sys.version.split()[0]}")
+print(f"Processor: {platform.processor()}")
+
+# Memory Information
+memory = psutil.virtual_memory()
+print(f"\nTotal Memory: {get_size(memory.total)}")
+print(f"Available Memory: {get_size(memory.available)}")
+```
