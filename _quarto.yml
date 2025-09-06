@@ -12,9 +12,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-      - projects.qmd
-      - ad688.qmd
+      - href: about.qmd
+        text: About Me
+      - href: projects.qmd
+        text: Projects
+      - href: ad688.qmd
+        text: System Info
 
 format:
   html:

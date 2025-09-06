@@ -69,18 +69,32 @@
     font-weight: 600;
 }
 
-.nav-link {
+.navbar-nav .nav-item a {
     color: #2c3e50 !important;
     transition: color 0.3s ease;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
 }
 
-.nav-link:hover {
+.navbar-nav .nav-item a:hover {
     color: #0056b3 !important;
 }
 
-.nav-link.active {
+.navbar-nav .nav-item .active {
     color: #0056b3 !important;
     font-weight: 600;
+}
+
+/* Override any default nav-link styles */
+.nav-link,
+.nav-link:link,
+.nav-link:visited {
+    color: #2c3e50 !important;
+}
+
+.nav-link:hover,
+.nav-link:active {
+    color: #0056b3 !important;
 }
 
 /* General styling */
