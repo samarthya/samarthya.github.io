@@ -1,10 +1,8 @@
 ---
 title: "About Me"
 format:
-    html:
-        theme: journal
-        toc: true
-        css: styles.css
+  html:
+    page-layout: full
 ---
 
 ## Professional Overview

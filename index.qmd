@@ -2,10 +2,8 @@
 title: "Welcome!"
 author: "Samarthya"
 format:
-    html:
-        theme: journal
-        toc: true
-        css: styles.css
+  html:
+    page-layout: full
 ---
 
 # Welcome! 👋

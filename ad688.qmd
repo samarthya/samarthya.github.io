@@ -4,9 +4,7 @@ subtitle: "System Information Proof"
 author: Samarthya
 format:
   html:
-    theme: journal
-    toc: true
-    css: styles.css
+    page-layout: full
     code-fold: false
     code-tools: true
 jupyter: python3

@@ -2,9 +2,6 @@
 title: "Projects"
 format:
   html:
-    theme: journal
-    toc: true
-    css: styles.css
     page-layout: full
 ---
 
