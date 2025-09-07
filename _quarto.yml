@@ -18,8 +18,6 @@ website:
         text: Projects
       - href: ad688.qmd
         text: System Info
-      - href: assign01.qmd
-        text: Assignment01
 
 format:
   html:
