@@ -10,9 +10,11 @@ format:
 jupyter: python3
 ---
 
-This page displays basic information(AD688)
+This page displays basic information of the host(AD688)
 
 ## System Details
+
+Uses python to execute
 
 ```{python}
 import platform
