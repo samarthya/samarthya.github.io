@@ -7,6 +7,20 @@
     "text": "EventsService\n        No description available\n        \n             0\n             4\n             Java\n        \n        Last updated: April 24, 2019\n    \n    \n    \n        ad688-sp25-lab01\n        Lab 01 Repository for AD 688 SP25\n        \n             0\n             0\n             Unknown\n        \n        Last updated: September 03, 2025\n    \n    \n    \n        android\n        My take on Android startup project.\n        \n             0\n             0\n             Kotlin\n        \n        Last updated: December 13, 2018\n    \n    \n    \n        AndroidAppNotes\n        Learning to build an android app to build notes.\n        \n             0\n             0\n             Java\n        \n        Last updated: January 10, 2019\n    \n    \n    \n        angular\n        No description available\n        \n             0\n             0\n             TypeScript\n        \n        Last updated: July 13, 2019\n    \n    \n\n\n\n\n\n\n\nNote\n\n\n\nThese are my top 5 GitHub repositories based on stars and forks. Click on any project to view its source code and documentation."
   },
   {
+    "objectID": "ad688.html",
+    "href": "ad688.html",
+    "title": "Assignment 01",
+    "section": "",
+    "text": "This page displays basic information of the host(AD688)"
+  },
+  {
+    "objectID": "ad688.html#system-details",
+    "href": "ad688.html#system-details",
+    "title": "Assignment 01",
+    "section": "System Details",
+    "text": "System Details\nUses python to execute\n\nimport platform\nimport psutil\nimport sys\n\ndef get_size(bytes):\n    \"\"\"\n    Convert bytes to human readable format\n    \"\"\"\n    for unit in ['', 'K', 'M', 'G', 'T', 'P']:\n        if bytes &lt; 1024:\n            return f\"{bytes:.2f}{unit}B\"\n        bytes /= 1024\n\n# Basic System Information\nprint(f\"Operating System: {platform.system()}\")\nprint(f\"OS Version: {platform.version()}\")\nprint(f\"Python Version: {sys.version.split()[0]}\")\nprint(f\"Processor: {platform.processor()}\")\n\n# Memory Information\nmemory = psutil.virtual_memory()\nprint(f\"\\nTotal Memory: {get_size(memory.total)}\")\nprint(f\"Available Memory: {get_size(memory.available)}\")\n\nOperating System: Linux\nOS Version: #18~24.04.1-Ubuntu SMP Sat Jun 28 04:46:03 UTC 2025\nPython Version: 3.12.11\nProcessor: x86_64\n\nTotal Memory: 15.62GB\nAvailable Memory: 14.43GB"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About Me",
@@ -68,20 +82,6 @@
     "title": "About Me",
     "section": "Blog & Technical Writing",
     "text": "Blog & Technical Writing\nI maintain a technical blog where I share insights about: - Software architecture and design - Team management practices - Technology trends and innovations - Best practices in software development - Agile methodologies and implementation\nVisit my blog to read more about my technical insights and experiences in the software industry."
-  },
-  {
-    "objectID": "ad688.html",
-    "href": "ad688.html",
-    "title": "Assignment 01",
-    "section": "",
-    "text": "This page displays basic information of the host(AD688)"
-  },
-  {
-    "objectID": "ad688.html#system-details",
-    "href": "ad688.html#system-details",
-    "title": "Assignment 01",
-    "section": "System Details",
-    "text": "System Details\nUses python to execute\n\nimport platform\nimport psutil\nimport sys\n\ndef get_size(bytes):\n    \"\"\"\n    Convert bytes to human readable format\n    \"\"\"\n    for unit in ['', 'K', 'M', 'G', 'T', 'P']:\n        if bytes &lt; 1024:\n            return f\"{bytes:.2f}{unit}B\"\n        bytes /= 1024\n\n# Basic System Information\nprint(f\"Operating System: {platform.system()}\")\nprint(f\"OS Version: {platform.version()}\")\nprint(f\"Python Version: {sys.version.split()[0]}\")\nprint(f\"Processor: {platform.processor()}\")\n\n# Memory Information\nmemory = psutil.virtual_memory()\nprint(f\"\\nTotal Memory: {get_size(memory.total)}\")\nprint(f\"Available Memory: {get_size(memory.available)}\")\n\nOperating System: Linux\nOS Version: #18~24.04.1-Ubuntu SMP Sat Jun 28 04:46:03 UTC 2025\nPython Version: 3.12.11\nProcessor: x86_64\n\nTotal Memory: 15.62GB\nAvailable Memory: 14.38GB"
   },
   {
     "objectID": "index.html",
