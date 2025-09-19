@@ -18,13 +18,19 @@ samarthya.github.io/
 
 ## 🚀 Getting Started
 
+Attempt at redoing my profile page via Quarto! It is good that Boston University started with this. Gave a good idea around how old the previous deployment was!!
+
 ### Prerequisites
+
+What I need to get started!
 
 - [Quarto](https://quarto.org/docs/get-started/) (latest version)
 - Python 3.12 or higher (for any Python-based content)
 - VSCode with Quarto extension (recommended)
 
 ### Local Development
+
+Process I followed!
 
 1. Clone the repository:
 
@@ -87,7 +93,7 @@ samarthya.github.io/
 
 ## 🚀 Deployment
 
-The site is automatically deployed to GitHub Pages using GitHub Actions workflow defined in `.github/workflows/quartopublish.yml`.
+The site is automatically deployed to GitHub Pages using GitHub Actions workflow defined in `.github/workflows/publish.yml`.
 
 The deployment process:
 
@@ -95,33 +101,6 @@ The deployment process:
 2. Sets up Quarto environment
 3. Builds the website
 4. Publishes to GitHub Pages
-
-## 🔄 How to Extend
-
-### Adding New Pages
-
-1. Create a new `.qmd` file
-2. Add YAML frontmatter with title and format
-3. Add the page to navigation in `_quarto.yml`
-
-### Custom Components
-
-1. Add custom CSS in `styles.css`
-2. Use Quarto's div syntax for custom containers
-3. Leverage Bootstrap classes for layout
-
-### Custom JavaScript
-
-1. Create `.js` files in a `scripts/` directory
-2. Add to `_quarto.yml` under `format.html.include-in-header`
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📧 Contact
 
