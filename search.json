@@ -18,7 +18,7 @@
     "href": "ad688.html#system-details",
     "title": "Assignment 01",
     "section": "System Details",
-    "text": "System Details\nUses python to execute\n\nimport platform\nimport psutil\nimport sys\n\ndef get_size(bytes):\n    \"\"\"\n    Convert bytes to human readable format\n    \"\"\"\n    for unit in ['', 'K', 'M', 'G', 'T', 'P']:\n        if bytes &lt; 1024:\n            return f\"{bytes:.2f}{unit}B\"\n        bytes /= 1024\n\n# Basic System Information\nprint(f\"Operating System: {platform.system()}\")\nprint(f\"OS Version: {platform.version()}\")\nprint(f\"Python Version: {sys.version.split()[0]}\")\nprint(f\"Processor: {platform.processor()}\")\n\n# Memory Information\nmemory = psutil.virtual_memory()\nprint(f\"\\nTotal Memory: {get_size(memory.total)}\")\nprint(f\"Available Memory: {get_size(memory.available)}\")\n\nOperating System: Linux\nOS Version: #18~24.04.1-Ubuntu SMP Sat Jun 28 04:46:03 UTC 2025\nPython Version: 3.12.11\nProcessor: x86_64\n\nTotal Memory: 15.62GB\nAvailable Memory: 14.39GB"
+    "text": "System Details\nUses python to execute\n\n\nCode\nimport platform\nimport psutil\nimport sys\n\ndef get_size(bytes):\n    \"\"\"\n    Convert bytes to human readable format\n    \"\"\"\n    for unit in ['', 'K', 'M', 'G', 'T', 'P']:\n        if bytes &lt; 1024:\n            return f\"{bytes:.2f}{unit}B\"\n        bytes /= 1024\n\n# Basic System Information\nprint(f\"Operating System: {platform.system()}\")\nprint(f\"OS Version: {platform.version()}\")\nprint(f\"Python Version: {sys.version.split()[0]}\")\nprint(f\"Processor: {platform.processor()}\")\n\n# Memory Information\nmemory = psutil.virtual_memory()\nprint(f\"\\nTotal Memory: {get_size(memory.total)}\")\nprint(f\"Available Memory: {get_size(memory.available)}\")\n\n\nOperating System: Linux\nOS Version: #18~24.04.1-Ubuntu SMP Sat Jun 28 04:46:03 UTC 2025\nPython Version: 3.12.11\nProcessor: x86_64\n\nTotal Memory: 15.62GB\nAvailable Memory: 14.39GB"
   },
   {
     "objectID": "about.html",
@@ -88,34 +88,34 @@
     "href": "index.html",
     "title": "Welcome!",
     "section": "",
-    "text": "Welcome! 👋\n  \n  About Me\n  Expertise\n  Professional Philosophy\n  Get in Touch"
+    "text": "I’m Saurabh, a passionate technologist and software engineering professional. This space serves as a window into my professional journey, projects, and technical insights.\n\n\nI am a software engineer with expertise in building scalable applications and distributed systems. My technical journey has been driven by a constant desire to learn and create impactful solutions.\n\n\n\n\n\n\n\n Cloud Architecture & Development\n Distributed Systems\n Full Stack Development\n System Design & Architecture\n DevOps & CI/CD\n Agile Methodologies\n\n\n\n\n\n Java & Spring Framework\n Cloud Platforms (GCP/AWS/Azure)\n Containerization (Docker, Kubernetes)\n Microservices Architecture\n Database Systems\n REST/GraphQL APIs\n\n\n\n\n\n\nI believe in:\n\n Writing clean, testable and maintainable code\n Building scalable and resilient systems\n Continuous learning and improvement\n Sharing knowledge and mentoring others\n Solving complex problems with simple solutions\n\n\n\n\n\n\n\n GitHub\n LinkedIn\n Blog\n Email\n Website\n\n\n\n\nFeel free to explore my  projects or learn more  about me."
   },
   {
     "objectID": "index.html#about-me",
     "href": "index.html#about-me",
     "title": "Welcome!",
-    "section": "About Me",
-    "text": "About Me\nI am a software engineer with expertise in building scalable applications and distributed systems. My technical journey has been driven by a constant desire to learn and create impactful solutions."
+    "section": "",
+    "text": "I am a software engineer with expertise in building scalable applications and distributed systems. My technical journey has been driven by a constant desire to learn and create impactful solutions."
   },
   {
     "objectID": "index.html#expertise",
     "href": "index.html#expertise",
     "title": "Welcome!",
-    "section": "Expertise",
-    "text": "Expertise\n\n\nTechnical Skills\n\n Cloud Architecture & Development\n Distributed Systems\n Full Stack Development\n System Design & Architecture\n DevOps & CI/CD\n Agile Methodologies\n\n\n\nCore Technologies\n\n Java & Spring Framework\n Cloud Platforms (GCP/AWS/Azure)\n Containerization (Docker, Kubernetes)\n Microservices Architecture\n Database Systems\n REST/GraphQL APIs"
+    "section": "",
+    "text": "Cloud Architecture & Development\n Distributed Systems\n Full Stack Development\n System Design & Architecture\n DevOps & CI/CD\n Agile Methodologies\n\n\n\n\n\n Java & Spring Framework\n Cloud Platforms (GCP/AWS/Azure)\n Containerization (Docker, Kubernetes)\n Microservices Architecture\n Database Systems\n REST/GraphQL APIs"
   },
   {
     "objectID": "index.html#professional-philosophy",
     "href": "index.html#professional-philosophy",
     "title": "Welcome!",
-    "section": "Professional Philosophy",
-    "text": "Professional Philosophy\nI believe in:\n\n Writing clean, testable and maintainable code\n Building scalable and resilient systems\n Continuous learning and improvement\n Sharing knowledge and mentoring others\n Solving complex problems with simple solutions"
+    "section": "",
+    "text": "I believe in:\n\n Writing clean, testable and maintainable code\n Building scalable and resilient systems\n Continuous learning and improvement\n Sharing knowledge and mentoring others\n Solving complex problems with simple solutions"
   },
   {
     "objectID": "index.html#get-in-touch",
     "href": "index.html#get-in-touch",
     "title": "Welcome!",
-    "section": "Get in Touch",
-    "text": "Get in Touch\n\n\n\n GitHub\n LinkedIn\n Blog\n Email\n Website\n\n\n\n\nFeel free to explore my  projects or learn more  about me."
+    "section": "",
+    "text": "GitHub\n LinkedIn\n Blog\n Email\n Website\n\n\n\n\nFeel free to explore my  projects or learn more  about me."
   }
 ]
