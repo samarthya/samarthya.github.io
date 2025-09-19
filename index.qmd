@@ -4,6 +4,19 @@ author: "Samarthya"
 format:
   html:
     page-layout: full
+    toc: true
+    toc-depth: 3
+    toc-expand: true
+    toc-title: Index
+    toc-location: right-body
+    other-links:
+      - text: Blogs
+        icon: file-person
+        href: https://blog.samarthya.me/
+    code-links:
+      - text: Contact me
+        icon: person-rolodex
+        href: https://blog.samarthya.me/wps/contact/
 ---
 
 # Welcome! 👋
