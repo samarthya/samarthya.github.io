@@ -1,11 +1,13 @@
 ---
-title: "Assignment 01"
-subtitle: "System Information Proof"
-author: Samarthya
+title: Assignment 01
+subtitle: System Information Proof
+author: 
+    - name: Samarthya
+date: today
 format:
   html:
     page-layout: full
-    code-fold: false
+    code-fold: true
     code-tools: true
 jupyter: python3
 ---
@@ -17,6 +19,8 @@ This page displays basic information of the host(AD688)
 Uses python to execute
 
 ```{python}
+#| echo: true
+#| eval: true
 import platform
 import psutil
 import sys

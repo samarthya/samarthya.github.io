@@ -2,3 +2,4 @@
 **/*.quarto_ipynb
 venv/
 __pycache__/
+_site/

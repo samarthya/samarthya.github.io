@@ -1,6 +1,11 @@
 ---
 title: "Welcome!"
-author: "Samarthya"
+subtitle: Namaste - Hola - Salut!
+author: 
+  - name: Samarthya
+    url: https://smarthya.me
+# abstract: This is the landing page; containing a short introduction to who am I.
+date: today
 format:
   html:
     page-layout: full
@@ -8,7 +13,7 @@ format:
     toc-depth: 3
     toc-expand: true
     toc-title: Index
-    toc-location: right-body
+    toc-location: right
     other-links:
       - text: Blogs
         icon: file-person
