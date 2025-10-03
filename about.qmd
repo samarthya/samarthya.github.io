@@ -216,4 +216,4 @@ else:
     display(HTML('<p>Unable to fetch blog posts at the moment.</p>'))
 ```
 
-Visit my [blog](https://blog.samarthya.me) to read more about my technical insights and experiences in the software industry.
+---
