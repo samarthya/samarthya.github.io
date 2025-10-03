@@ -5,6 +5,31 @@ format:
     page-layout: full
 ---
 
+```{=html}
+<div class="profile-header">
+  <img src="assets/images/profile.jpg" alt="Saurabh Sharma" class="profile-photo">
+  <div class="profile-info">
+    <h1>Saurabh Sharma</h1>
+    <div class="profile-title">Engineering Manager</div>
+    <div class="profile-location">
+      <i class="fas fa-map-marker-alt"></i> Boston, USA
+    </div>
+    <p>A seasoned software management professional with over 20 years of experience in the technology industry.</p>
+    <div class="profile-badges">
+      <span class="profile-badge">
+        <i class="fas fa-certificate"></i> Security professional
+      </span>
+      <span class="profile-badge">
+        <i class="fas fa-users"></i> AI/ML enthusiast
+      </span>
+      <span class="profile-badge">
+        <i class="fas fa-project-diagram"></i> SAFe Practitioner
+      </span>
+    </div>
+  </div>
+</div>
+```
+
 ## Professional Overview
 
 I am Saurabh, a seasoned software management professional with over 20 years of experience in the technology industry. As a certified PMP, Scrum, and SAFe practitioner, I've dedicated my career to building and leading high-performing software teams across multiple geographies and business domains.
@@ -80,5 +105,128 @@ I maintain a technical blog where I share insights about:
 - Technology trends and innovations
 - Best practices in software development
 - Agile methodologies and implementation
+
+## Recent Blog Posts
+
+```{python}
+#| echo: false
+#| output: asis
+
+import requests
+from datetime import datetime, timezone
+from dateutil import parser
+
+def format_time_ago(dt):
+    """Format time difference in a human readable way"""
+    if dt.tzinfo is None:
+        # Make naive datetime timezone-aware
+        dt = dt.replace(tzinfo=timezone.utc)
+    now = datetime.now(timezone.utc)
+    diff = now - dt
+
+    seconds = diff.total_seconds()
+    if seconds < 60:
+        return 'just now'
+    elif seconds < 3600:
+        minutes = int(seconds / 60)
+        return f'{minutes} minute{"s" if minutes > 1 else ""} ago'
+    elif seconds < 86400:
+        hours = int(seconds / 3600)
+        return f'{hours} hour{"s" if hours > 1 else ""} ago'
+    elif seconds < 2592000:  # 30 days
+        days = int(seconds / 86400)
+        return f'{days} day{"s" if days > 1 else ""} ago'
+    elif seconds < 31536000:  # 365 days
+        months = int(seconds / 2592000)
+        return f'{months} month{"s" if months > 1 else ""} ago'
+    else:
+        years = int(seconds / 31536000)
+        return f'{years} year{"s" if years > 1 else ""} ago'
+from bs4 import BeautifulSoup
+from IPython.display import HTML
+
+def fetch_wordpress_posts(url="https://blog.samarthya.me/wps/wp-json/wp/v2/posts", limit=6):
+    params = {
+        'per_page': limit,
+        'orderby': 'date',
+        'order': 'desc',
+        '_embed': 1  # Include featured media and other embedded content
+    }
+
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        print(f"Error fetching posts: {e}")
+        return []
+
+def get_featured_image(post):
+    if '_embedded' in post and 'wp:featuredmedia' in post['_embedded']:
+        media = post['_embedded']['wp:featuredmedia'][0]
+        if 'source_url' in media:
+            return media['source_url']
+    return None
+
+def get_excerpt(content, max_length=150):
+    # Remove HTML tags and get plain text
+    soup = BeautifulSoup(content, 'html.parser')
+    text = soup.get_text()
+    # Truncate to max_length
+    if len(text) > max_length:
+        return text[:max_length].rsplit(' ', 1)[0] + '...'
+    return text
+
+def format_date(post_date):
+    """Parse date from WordPress API and format it as time ago"""
+    try:
+        # Parse the date and ensure it's UTC
+        date = parser.parse(post_date)
+        if date.tzinfo is None:
+            date = date.replace(tzinfo=timezone.utc)
+        return format_time_ago(date)
+    except Exception as e:
+        print(f"Error parsing date: {e}")
+        return post_date  # Return original date string if parsing fails
+
+# Fetch posts
+posts = fetch_wordpress_posts()
+
+if posts:
+    html_content = '<div class="blog-grid">'
+
+    for post in posts:
+        title = post['title']['rendered']
+        link = post['link']
+        excerpt = get_excerpt(post['excerpt']['rendered'])
+        date = format_date(post['date'])
+        featured_image = get_featured_image(post)
+
+        # Get categories
+        categories = []
+        if '_embedded' in post and 'wp:term' in post['_embedded']:
+            for terms in post['_embedded']['wp:term']:
+                for term in terms:
+                    if term['taxonomy'] == 'category':
+                        categories.append(term['name'])
+
+        html_content += f"""
+        <div class="blog-card">
+            {'<div class="blog-image"><img src="' + featured_image + '" alt="' + title + '"></div>' if featured_image else ''}
+            <div class="category">{'Technical' if 'Technical' in categories else categories[0] if categories else 'Blog'}</div>
+            <h3><a href="{link}" target="_blank">{title}</a></h3>
+            <div class="excerpt">{excerpt}</div>
+            <div class="meta">
+                <i class="fas fa-clock"></i> {date}
+            </div>
+        </div>
+        """
+
+    html_content += '</div>'
+
+    display(HTML(html_content))
+else:
+    display(HTML('<p>Unable to fetch blog posts at the moment.</p>'))
+```
 
 Visit my [blog](https://blog.samarthya.me) to read more about my technical insights and experiences in the software industry.
