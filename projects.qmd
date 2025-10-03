@@ -17,6 +17,7 @@ format:
 import requests
 from datetime import datetime, timedelta
 import json
+from IPython.display import HTML, display
 
 def fetch_github_activity(username="samarthya", days=30):
     # Get user events
