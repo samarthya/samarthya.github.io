@@ -5,8 +5,6 @@ format:
 ---
 
 ```{=html}
-#| label: about-profile-card
-#| fig-alt: "Saurabh Sharma"
 
 <div class="profile-header">
   <img src="assets/images/profile.jpg" alt="Saurabh Sharma" class="profile-photo">
