@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -71,6 +71,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
@@ -133,7 +136,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#about-me" id="toc-about-me" class="nav-link" data-scroll-target="#about-me">About Me</a></li>
   <li><a href="#expertise" id="toc-expertise" class="nav-link" data-scroll-target="#expertise">Expertise</a></li>
   <li><a href="#professional-philosophy" id="toc-professional-philosophy" class="nav-link" data-scroll-target="#professional-philosophy">Professional Philosophy</a></li>
-  <li><a href="#get-in-touch" id="toc-get-in-touch" class="nav-link" data-scroll-target="#get-in-touch">Get in Touch</a></li>
+  <li><a href="#latest-blog-posts" id="toc-latest-blog-posts" class="nav-link" data-scroll-target="#latest-blog-posts">Latest Blog Posts</a></li>
   </ul></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://blog.samarthya.me/"><i class="bi bi-file-person"></i>Blogs</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://blog.samarthya.me/wps/contact/"><i class="bi bi-person-rolodex"></i>Contact me</a></li></ul></div></nav>
@@ -218,19 +221,39 @@ ul.task-list li input[type="checkbox"] {
 <li><i class="fas fa-puzzle-piece"></i> Solving complex problems with simple solutions</li>
 </ul>
 </section>
-<section id="get-in-touch" class="level2 mt-4">
-<h2 class="mt-4 anchored" data-anchor-id="get-in-touch">Get in Touch</h2>
-<div class="grid">
-<div class="g-col-12 social-links">
-<ul>
-<li><i class="fab fa-github"></i> <a href="https://github.com/samarthya">GitHub</a></li>
-<li><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/samarthyasaurabh">LinkedIn</a></li>
-<li><i class="fas fa-blog"></i> <a href="https://blog.samarthya.me">Blog</a></li>
-<li><i class="fas fa-envelope"></i> <a href="mailto:mailme@samarthya.me">Email</a></li>
-<li><i class="fas fa-globe"></i> <a href="https://samarthya.me">Website</a></li>
-</ul>
-</div>
-</div>
+<section id="latest-blog-posts" class="level2">
+<h2 class="anchored" data-anchor-id="latest-blog-posts">Latest Blog Posts</h2>
+<div class="blog-showcase"><div class="blog-showcase-grid">
+        <a href="https://blog.samarthya.me/wps/2025/09/14/apache-spark/" class="blog-showcase-link" target="_blank">
+            <div class="blog-showcase-item">
+                <img src="https://blog.samarthya.me/wps/wp-content/uploads/2025/09/cluster.png" alt="Apache Spark">
+                <div class="blog-showcase-overlay">
+                    <h3 class="blog-showcase-title anchored">Apache Spark</h3>
+                    <div class="blog-showcase-category">technical</div>
+                </div>
+            </div>
+        </a>
+        
+        <a href="https://blog.samarthya.me/wps/2025/09/11/quarto-a-new-way/" class="blog-showcase-link" target="_blank">
+            <div class="blog-showcase-item">
+                <img src="https://blog.samarthya.me/wps/wp-content/uploads/2025/09/quarto-blog.png" alt="Quarto: A new way!">
+                <div class="blog-showcase-overlay">
+                    <h3 class="blog-showcase-title anchored">Quarto: A new way!</h3>
+                    <div class="blog-showcase-category">technical</div>
+                </div>
+            </div>
+        </a>
+        
+        <a href="https://blog.samarthya.me/wps/2025/03/14/dialectic-inquiry/" class="blog-showcase-link" target="_blank">
+            <div class="blog-showcase-item">
+                <img src="https://blog.samarthya.me/wps/wp-content/uploads/2025/03/cthik2.jpeg" alt="Dialectic Inquiry">
+                <div class="blog-showcase-overlay">
+                    <h3 class="blog-showcase-title anchored">Dialectic Inquiry</h3>
+                    <div class="blog-showcase-category">technical</div>
+                </div>
+            </div>
+        </a>
+        </div></div>
 <div class="text-center mt-5">
 <p>Feel free to explore my <a href="./projects.html"><i class="fas fa-code-branch"></i> projects</a> or learn more <a href="./about.html"><i class="fas fa-user"></i> about me</a>.</p>
 </div>
@@ -641,32 +664,6 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>© 2024 Samarthya. Built with <a href="https://quarto.org/">Quarto</a></p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right">
-      <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/samarthya">
-      <i class="bi bi-github" role="img">
-</i> 
-    </a>
-  </li>  
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://linkedin.com/in/samarthyasaurabh">
-      <i class="bi bi-linkedin" role="img">
-</i> 
-    </a>
-  </li>  
-</ul>
-    </div>
-  </div>
-</footer>
 <div class="floating-brand">
   <a href="./" class="brand-link">
     <img src="assets/images/logo-mine-1.jpg" alt="Brand Logo" class="brand-logo">
@@ -677,6 +674,18 @@ ul.task-list li input[type="checkbox"] {
   </a>
 </div>
 <script src="assets/js/github-tabs.js"></script>
+<div class="page-footer">
+    <div class="social-links">
+        <a href="mailto:mailme@samarthya.me" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/samarthyasaurabh" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://blog.samarthya.me" target="_blank" title="Blog"><i class="fas fa-blog"></i></a>
+        <a href="https://samarthya.me" target="_blank" title="Website"><i class="fas fa-globe"></i></a>
+        <a href="https://github.com/samarthya" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="footer-text">
+        © 2024 Samarthya. All rights reserved.
+    </div>
+</div>
 
 
 
