@@ -5,10 +5,9 @@ format:
     page-layout: full
 ---
 
-:::: {.tabs}
+# GitHub Activity & Projects {.tabset}
 
-::: {.tab-content}
-# Activity
+## Activity
 
 ```{python}
 #| echo: false
@@ -101,15 +100,12 @@ if events:
 
     html_content += '</div></div>'
 
-    print(html_content)
+    display(HTML(html_content))
 else:
-    print('<p>No recent GitHub activity to display.</p>')
+    display(HTML('<p>No recent GitHub activity to display.</p>'))
 ```
 
-:::
-
-::: {.tab-content}
-# Projects
+## Projects
 
 ```{python}
 #| echo: false
