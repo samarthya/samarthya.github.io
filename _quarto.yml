@@ -47,6 +47,5 @@ format:
     include-in-header:
       - file: assets/includes/head.html
     include-after-body:
-      - file: assets/js/github-tabs.js
       - file: assets/includes/brand.html
 
