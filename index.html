@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-414915f500218987966797a841926390.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-e918efbb858fbc7fba7c50e4e73c9085.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -313,7 +313,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/samarthya\.github\.io\/");
+        var filterRegex = new RegExp("https:\/\/samarthya\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -641,6 +641,70 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2024 Samarthya. Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/samarthya">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/samarthyasaurabh">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+document.addEventListener('DOMContentLoaded', function() {
+    const navItems = document.querySelectorAll('.github-nav .nav-item');
+    const sections = document.querySelectorAll('.content-section');
+    const indicator = document.querySelector('.nav-indicator');
+
+    function updateIndicator(element) {
+        indicator.style.width = `${element.offsetWidth}px`;
+        indicator.style.left = `${element.offsetLeft}px`;
+    }
+
+    navItems.forEach(item =&gt; {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Update active states
+            navItems.forEach(nav =&gt; nav.classList.remove('active'));
+            this.classList.add('active');
+
+            // Update indicator
+            updateIndicator(this);
+
+            // Show correct section
+            const targetId = this.getAttribute('data-target');
+            sections.forEach(section =&gt; {
+                section.classList.remove('active');
+                if (section.id === targetId) {
+                    section.classList.add('active');
+                }
+            });
+        });
+    });
+
+    // Initialize indicator position
+    const activeItem = document.querySelector('.github-nav .nav-item.active');
+    if (activeItem) {
+        updateIndicator(activeItem);
+    }
+});
 <div class="floating-brand">
   <a href="./" class="brand-link">
     <img src="assets/images/logo-mine-1.jpg" alt="Brand Logo" class="brand-logo">

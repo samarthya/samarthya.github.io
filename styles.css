@@ -171,6 +171,108 @@
     }
 }
 
+/* GitHub Page Styling */
+.project-card h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.project-card h3 a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.project-card h3 a:hover {
+    text-decoration: underline;
+}
+
+.activity-date {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #24292e;
+    margin: 1.5em 0 0.75em;
+}
+
+.activity-link {
+    font-size: 0.95em;
+}
+
+.activity-details {
+    font-size: 0.9em;
+}
+
+.project-card .description {
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+.project-card .stats {
+    font-size: 0.85em;
+}
+
+.project-card .updated {
+    font-size: 0.8em;
+}
+
+/* GitHub Navigation Styling */
+.github-nav {
+    border-bottom: 1px solid #e1e4e8;
+    margin-bottom: 24px;
+    display: flex;
+    position: relative;
+}
+
+.github-nav .nav-item {
+    padding: 16px 8px;
+    margin-right: 16px;
+    color: #24292e;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.github-nav .nav-item:hover {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.github-nav .nav-item.active {
+    color: #24292e;
+    border-bottom: 2px solid #fd5c63;
+}
+
+.nav-indicator {
+    position: absolute;
+    bottom: -1px;
+    height: 2px;
+    background: #fd5c63;
+    transition: all 0.3s ease;
+}
+
+.content-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.content-section.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Hide the default headers since we're using custom nav */
+#github-activity-projects {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+#github-activity-projects h1 {
+    display: none;
+}
+
 /* GitHub Activity Timeline */
 .activity-timeline {
     padding: 20px;
