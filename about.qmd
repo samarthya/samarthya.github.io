@@ -37,12 +37,15 @@ I am Saurabh, a seasoned software management professional with over 20 years of 
 ## Areas of Expertise
 
 ### Leadership & Management
+
 - Building and managing cross-geographic development teams
 - Agile project management and process optimization
 - Product lifecycle management
 - Remote team management and coordination
 
 ### Technical Domains
+
+- AI/ML, AIOPS, SecOPS
 - Security systems
 - Location intelligence
 - Infrastructure management
