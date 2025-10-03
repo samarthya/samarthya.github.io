@@ -16,8 +16,6 @@ website:
         text: Projects
       - href: about.qmd
         text: About
-      - href: ad688.qmd
-        text: System Info
 
 format:
   html:
