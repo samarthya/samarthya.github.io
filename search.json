@@ -11,14 +11,14 @@
     "href": "about.html",
     "title": "About Me",
     "section": "",
-    "text": "I am Saurabh, a seasoned software management professional with over 20 years of experience in the technology industry. As a certified PMP, Scrum, and SAFe practitioner, I’ve dedicated my career to building and leading high-performing software teams across multiple geographies and business domains."
+    "text": "Engineering Manager\n    \n       Boston, USA\n    \n    A seasoned software management professional with over 20 years of experience in the technology industry.\n    \n      \n         Security professional\n      \n      \n         AI/ML enthusiast\n      \n      \n         SAFe Practitioner"
   },
   {
     "objectID": "about.html#professional-overview",
     "href": "about.html#professional-overview",
     "title": "About Me",
-    "section": "",
-    "text": "I am Saurabh, a seasoned software management professional with over 20 years of experience in the technology industry. As a certified PMP, Scrum, and SAFe practitioner, I’ve dedicated my career to building and leading high-performing software teams across multiple geographies and business domains."
+    "section": "Professional Overview",
+    "text": "Professional Overview\nI am Saurabh, a seasoned software management professional with over 20 years of experience in the technology industry. As a certified PMP, Scrum, and SAFe practitioner, I’ve dedicated my career to building and leading high-performing software teams across multiple geographies and business domains."
   },
   {
     "objectID": "about.html#areas-of-expertise",
@@ -67,7 +67,14 @@
     "href": "about.html#blog-technical-writing",
     "title": "About Me",
     "section": "Blog & Technical Writing",
-    "text": "Blog & Technical Writing\nI maintain a technical blog where I share insights about: - Software architecture and design - Team management practices - Technology trends and innovations - Best practices in software development - Agile methodologies and implementation\nVisit my blog to read more about my technical insights and experiences in the software industry."
+    "text": "Blog & Technical Writing\nI maintain a technical blog where I share insights about: - Software architecture and design - Team management practices - Technology trends and innovations - Best practices in software development - Agile methodologies and implementation"
+  },
+  {
+    "objectID": "about.html#recent-blog-posts",
+    "href": "about.html#recent-blog-posts",
+    "title": "About Me",
+    "section": "Recent Blog Posts",
+    "text": "Recent Blog Posts\n\n        \n            \n            technical\n            Apache Spark\n            So as part of the academic curriculum we just started re-exploring Apache Spark. It’s been one of the technology that I had long lost touch with....\n            \n                 19 days ago\n            \n        \n        \n        \n            \n            technical\n            Quarto: A new way!\n            Quarto: The Future of Scientific Publishing In the rapidly evolving landscape of data science and scientific publishing, tools that bridge the gap...\n            \n                 22 days ago\n            \n        \n        \n        \n            \n            technical\n            Dialectic Inquiry\n            Dialectic Inquiry: A Powerful Tool for Critical Thinking and Problem Solving Dialectic inquiry is a structured conversation method that can be used...\n            \n                 6 months ago\n            \n        \n        \n        \n            \n            technical\n            Linear Programming (LP)\n            What is Linear Programming? Linear programming is a mathematical technique used to find the best possible outcome (maximum profit or minimum cost) in...\n            \n                 7 months ago\n            \n        \n        \n        \n            \n            technical\n            Monte Carlo Optimisation\n            Imagine you’re trying to find the best solution to a problem, but the problem is really complex and has a lot of randomness involved. Maybe you’re...\n            \n                 7 months ago\n            \n        \n        \n        \n            \n            technical\n            sed – Stream Editor\n            In the realm of Unix-like operating systems, where command-line prowess reigns supreme, sed stands tall as a versatile and indispensable tool. Born...\n            \n                 7 months ago\n            \n        \n        \nVisit my blog to read more about my technical insights and experiences in the software industry."
   },
   {
     "objectID": "index.html",
