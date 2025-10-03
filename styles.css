@@ -172,6 +172,19 @@
 }
 
 /* GitHub Page Styling */
+.project-card {
+    background: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 .project-card h3 {
     font-size: 1.2em;
     margin-top: 0;
@@ -213,6 +226,15 @@
 
 .project-card .updated {
     font-size: 0.8em;
+}
+
+/* Projects Grid Styling */
+.projects-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 0;
 }
 
 /* GitHub Navigation Styling */
@@ -274,10 +296,15 @@
 }
 
 /* GitHub Activity Timeline */
-.activity-timeline {
-    padding: 20px;
-    max-width: 800px;
+.content-section {
+    padding: 20px 0;
+    max-width: 900px;
     margin: 0 auto;
+}
+
+.activity-timeline {
+    padding: 0;
+    width: 100%;
 }
 
 .activity-date {
