@@ -29,14 +29,6 @@ website:
       - text: About
         href: about.qmd
 
-  page-footer:
-    left: "© 2024 Samarthya. Built with [Quarto](https://quarto.org/)"
-    right:
-      - icon: github
-        href: https://github.com/samarthya
-      - icon: linkedin
-        href: https://linkedin.com/in/samarthyasaurabh
-
 format:
   html:
     theme: journal
@@ -48,4 +40,5 @@ format:
       - file: assets/includes/head.html
     include-after-body:
       - file: assets/includes/brand.html
+      - file: assets/includes/footer.html
 

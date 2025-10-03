@@ -74,21 +74,7 @@ I currently manage multiple remote teams, emphasizing:
 - Scrum Certified
 - SAFe Certified
 
-## Connect With Me {.mt-4}
-
-::: {.grid}
-
-::: {.g-col-12 .social-links}
-- <i class="fas fa-envelope"></i> [Email](mailto:mailme@samarthya.me)
-- <i class="fab fa-linkedin"></i> [LinkedIn](https://linkedin.com/in/samarthyasaurabh)
-- <i class="fas fa-blog"></i> [Blog](https://blog.samarthya.me)
-- <i class="fas fa-globe"></i> [Website](https://samarthya.me)
-- <i class="fab fa-github"></i> [GitHub](https://github.com/samarthya)
-:::
-
-:::
-
-## Location
+## Location & Interests
 
 Based in Boston, USA.
 

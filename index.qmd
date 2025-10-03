@@ -1,7 +1,7 @@
 ---
 title: "Welcome!"
 subtitle: Namaste - Hola - Salut!
-author: 
+author:
   - name: Samarthya
     url: https://smarthya.me
 # abstract: This is the landing page; containing a short introduction to who am I.
@@ -68,19 +68,81 @@ I believe in:
 - <i class="fas fa-users"></i> Sharing knowledge and mentoring others
 - <i class="fas fa-puzzle-piece"></i> Solving complex problems with simple solutions
 
-## Get in Touch {.mt-4}
 
-::: {.grid}
+## Latest Blog Posts
 
-::: {.g-col-12 .social-links}
-- <i class="fab fa-github"></i> [GitHub](https://github.com/samarthya)
-- <i class="fab fa-linkedin"></i> [LinkedIn](https://www.linkedin.com/in/samarthyasaurabh)
-- <i class="fas fa-blog"></i> [Blog](https://blog.samarthya.me)
-- <i class="fas fa-envelope"></i> [Email](mailto:mailme@samarthya.me)
-- <i class="fas fa-globe"></i> [Website](https://samarthya.me)
-:::
+```{python}
+#| echo: false
+#| output: asis
 
-:::
+import requests
+from datetime import datetime, timezone
+from dateutil import parser
+from bs4 import BeautifulSoup
+from IPython.display import HTML
+
+def fetch_wordpress_posts(url="https://blog.samarthya.me/wps/wp-json/wp/v2/posts", limit=3):
+    params = {
+        'per_page': limit,
+        'orderby': 'date',
+        'order': 'desc',
+        '_embed': 1
+    }
+
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        return response.json()
+    except Exception as e:
+        print(f"Error fetching posts: {e}")
+        return []
+
+def get_featured_image(post):
+    if '_embedded' in post and 'wp:featuredmedia' in post['_embedded']:
+        media = post['_embedded']['wp:featuredmedia'][0]
+        if 'source_url' in media:
+            return media['source_url']
+    return "assets/images/logo-mine-1.jpg"  # Default image if none found
+
+# Fetch posts
+posts = fetch_wordpress_posts()
+
+if posts:
+    html_content = '<div class="blog-showcase"><div class="blog-showcase-grid">'
+
+    for post in posts:
+        title = post['title']['rendered']
+        link = post['link']
+        featured_image = get_featured_image(post)
+
+        # Get categories
+        categories = []
+        if '_embedded' in post and 'wp:term' in post['_embedded']:
+            for terms in post['_embedded']['wp:term']:
+                for term in terms:
+                    if term['taxonomy'] == 'category':
+                        categories.append(term['name'])
+
+        category = categories[0] if categories else 'Blog'
+
+        html_content += f"""
+        <a href="{link}" class="blog-showcase-link" target="_blank">
+            <div class="blog-showcase-item">
+                <img src="{featured_image}" alt="{title}">
+                <div class="blog-showcase-overlay">
+                    <h3 class="blog-showcase-title">{title}</h3>
+                    <div class="blog-showcase-category">{category}</div>
+                </div>
+            </div>
+        </a>
+        """
+
+    html_content += '</div></div>'
+
+    display(HTML(html_content))
+else:
+    display(HTML('<p>Unable to fetch blog posts at the moment.</p>'))
+```
 
 ::: {.text-center .mt-5}
 Feel free to explore my [<i class="fas fa-code-branch"></i> projects](projects.qmd) or learn more [<i class="fas fa-user"></i> about me](about.qmd).
