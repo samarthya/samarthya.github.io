@@ -1,45 +1,52 @@
 project:
   type: website
+  output-dir: _site
   render:
     - "*.qmd"
     - "!README.md"
+  resources:
+    - "assets/"
+    - "favicon.ico"
 
+metadata-files:
+  - _metadata.yml
 
 website:
   title: "Samarthya: Github Portfolio"
-  favicon: "favicon.ico"
+  description: "Personal portfolio showcasing projects, skills, and technical expertise"
+  site-url: https://samarthya.github.io
+  repo-url: https://github.com/samarthya/samarthya.github.io
+  favicon: favicon.ico
+
   navbar:
+    background: light
+    search: true
     left:
-      - href: index.qmd
-        text: Home
-      - href: projects.qmd
-        text: Projects
-      - href: about.qmd
-        text: About
+      - text: Home
+        href: index.qmd
+      - text: Projects
+        href: projects.qmd
+      - text: About
+        href: about.qmd
+
+  page-footer:
+    left: "© 2024 Samarthya. Built with [Quarto](https://quarto.org/)"
+    right:
+      - icon: github
+        href: https://github.com/samarthya
+      - icon: linkedin
+        href: https://linkedin.com/in/samarthyasaurabh
 
 format:
   html:
     theme: journal
     css: styles.css
     toc: true
+    code-copy: true
+    code-overflow: wrap
     include-in-header:
-      - text: |
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-          <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-          <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-          <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-          <link rel="shortcut icon" href="favicon.ico">
+      - file: assets/includes/head.html
     include-after-body:
-      - text: |
-          <div class="floating-brand">
-            <a href="/" class="brand-link">
-              <img src="assets/images/logo-mine-1.jpg" alt="Brand Logo" class="brand-logo">
-              <div class="brand-text">
-                <span class="brand-name">Samarthya</span>
-                <span class="brand-tagline">Technology & Leadership</span>
-              </div>
-            </a>
-          </div>
-
-
+      - file: assets/js/github-tabs.js
+      - file: assets/includes/brand.html
 
