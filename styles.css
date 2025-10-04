@@ -221,6 +221,9 @@
     color: #586069;
     font-size: 1.2em;
     margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .profile-location {
@@ -233,6 +236,33 @@
 
 .profile-location i {
     margin-right: 0.5rem;
+}
+
+.profile-social {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    color: #0056b3;
+    text-decoration: none;
+    font-size: 1em;
+    transition: all 0.2s ease;
+    opacity: 0.8;
+}
+
+.social-icon:hover {
+    transform: translateY(-2px);
+    color: #0077cc;
+    opacity: 1;
 }
 
 .profile-badges {

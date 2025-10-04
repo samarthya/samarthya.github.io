@@ -11,7 +11,23 @@ format:
   <img src="assets/images/profile.jpg" alt="Saurabh Sharma" class="profile-photo">
   <div class="profile-info">
     <h1>Saurabh Sharma</h1>
-    <div class="profile-title">Engineering Manager</div>
+    <div class="profile-title">
+      Engineering Manager
+      <div class="profile-social">
+        <a href="https://linkedin.com/in/samarthyasaurabh" target="_blank" class="social-icon" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/samarthya" target="_blank" class="social-icon" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://blog.samarthya.me" target="_blank" class="social-icon" aria-label="Blog">
+          <i class="fas fa-blog"></i>
+        </a>
+        <a href="mailto:mailme@samarthya.me" class="social-icon" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </div>
+    </div>
     <div class="profile-location">
       <i class="fas fa-map-marker-alt"></i> Boston, USA
     </div>

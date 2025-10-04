@@ -12,7 +12,7 @@ metadata-files:
   - _metadata.yml
 
 website:
-  title: "Samarthya: Github Portfolio"
+  title: "Samarthya: Portfolio"
   description: "Personal portfolio showcasing projects, skills, and technical expertise"
   site-url: https://samarthya.github.io
   repo-url: https://github.com/samarthya/samarthya.github.io
