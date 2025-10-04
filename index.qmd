@@ -1,11 +1,6 @@
 ---
 title: "Welcome!"
 subtitle: Namaste - Hola - Salut!
-author:
-  - name: Samarthya
-    url: https://smarthya.me
-# abstract: This is the landing page; containing a short introduction to who am I.
-date: today
 format:
   html:
     page-layout: full
@@ -57,6 +52,72 @@ I am a software engineer with expertise in building scalable applications and di
 :::
 
 :::
+
+## Experience Highlights
+
+```{=html}
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-history"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">20+</div>
+      <div class="stat-label">Years</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-rocket"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Projects</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-award"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">30+</div>
+      <div class="stat-label">Certs</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-layer-group"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">15+</div>
+      <div class="stat-label">Stacks</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-brain"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">ML Models</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-cloud"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">3+</div>
+      <div class="stat-label">Clouds</div>
+    </div>
+  </div>
+</div>
+```
 
 ## Professional Philosophy
 

@@ -1,4 +1,5 @@
 ---
+title: "About Me"
 format:
   html:
     page-layout: full
@@ -51,6 +52,35 @@ I am Saurabh, a seasoned software management professional with over 20 years of 
 - Infrastructure management
 - Software product development
 - Quality assurance and process improvement
+
+### Machine Learning Expertise
+As part of my ongoing academic journey and professional development, I'm focusing on Machine Learning and AI technologies:
+
+:::: {.grid}
+::: {.g-col-6}
+#### Core ML Competencies
+- Data Preprocessing & Feature Engineering
+- Statistical Modeling & Analysis
+- Neural Networks & Deep Learning
+- Natural Language Processing
+- Computer Vision Applications
+:::
+
+::: {.g-col-6}
+#### ML Tech Stack
+- Python (NumPy, Pandas, Scikit-learn)
+- TensorFlow & PyTorch
+- Jupyter & Data Visualization
+- Cloud ML Services (AWS/GCP)
+- MLOps & Model Deployment
+:::
+::::
+
+:::: {.highlight-box}
+::: {.text-center}
+**Current Learning Focus**: Exploring deep learning architectures and their applications in real-world scenarios, with particular emphasis on computer vision and natural language processing for security applications.
+:::
+::::
 
 ## Professional Philosophy
 

@@ -1,0 +1,75 @@
+/*-- scss:defaults --*/
+
+// Colors
+$primary: #0056b3;
+$secondary: #6c757d;
+$success: #28a745;
+$info: #17a2b8;
+$warning: #ffc107;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #343a40;
+
+// Base document colors
+$body-bg: #ffffff;
+$body-color: #2c3e50;
+$link-color: $primary;
+$selection-bg: lighten($primary, 50%);
+
+// Fonts
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$headings-font-weight: 600;
+
+// Navbar
+$navbar-bg: $light;
+$navbar-fg: $body-color;
+$navbar-hl: $primary;
+
+// Cards
+$card-border-color: #e1e4e8;
+$card-cap-bg: $light;
+
+// Code blocks
+$code-block-bg: #f8f9fa;
+$code-block-border-color: #e1e4e8;
+
+/*-- scss:rules --*/
+
+// Custom rules
+.navbar {
+    border-bottom: 1px solid $card-border-color;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.nav-footer {
+    border-top: 1px solid $card-border-color;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+}
+
+// Smooth transitions
+a {
+    transition: color 0.2s ease-in-out;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+}
+
+// Code highlighting
+pre {
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+// Table styles
+table {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-radius: 6px;
+    overflow: hidden;
+}

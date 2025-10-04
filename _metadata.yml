@@ -1,8 +1,9 @@
-author: Samarthya
 lang: en
-date-format: "MMMM D, YYYY"
 
 # Default page options
 page-layout: article
 title-block-banner: false
 number-sections: false
+show-author: false
+date-modified: false
+date: false

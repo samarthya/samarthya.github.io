@@ -1,0 +1,114 @@
+/*-- scss:defaults --*/
+
+// Colors
+$primary: #58a6ff;
+$secondary: #8b949e;
+$success: #3fb950;
+$info: #58a6ff;
+$warning: #d29922;
+$danger: #f85149;
+$light: #21262d;
+$dark: #0d1117;
+
+// Base document colors
+$body-bg: #0d1117;
+$body-color: #c9d1d9;
+$link-color: $primary;
+$selection-bg: rgba($primary, 0.2);
+
+// Fonts
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$headings-font-weight: 600;
+
+// Navbar
+$navbar-bg: $dark;
+$navbar-fg: $body-color;
+$navbar-hl: $primary;
+
+// Cards
+$card-border-color: #30363d;
+$card-cap-bg: $light;
+
+// Code blocks
+$code-block-bg: #161b22;
+$code-block-border-color: #30363d;
+
+/*-- scss:rules --*/
+
+// Custom rules
+body {
+    background-color: $body-bg;
+    color: $body-color;
+}
+
+.navbar {
+    border-bottom: 1px solid $card-border-color;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.nav-footer {
+    border-top: 1px solid $card-border-color;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.2);
+}
+
+// Smooth transitions
+a {
+    transition: color 0.2s ease-in-out;
+}
+
+.card {
+    background-color: $light;
+    border-color: $card-border-color;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+}
+
+// Code highlighting
+pre {
+    border-radius: 6px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    background-color: $code-block-bg;
+}
+
+// Table styles
+table {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+
+    th {
+        background-color: $light;
+    }
+
+    td {
+        border-color: $card-border-color;
+    }
+}
+
+// Dark mode specific adjustments
+.stat-card {
+    background: linear-gradient(145deg, #161b22, #21262d);
+    border-color: #30363d;
+
+    .stat-number {
+        color: $body-color;
+    }
+
+    .stat-label {
+        color: $secondary;
+    }
+
+    &:hover {
+        border-color: $primary;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+}
+
+.stat-icon {
+    background: linear-gradient(135deg, $primary, darken($primary, 10%));
+}
