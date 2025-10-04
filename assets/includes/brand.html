@@ -7,4 +7,72 @@
     </div>
   </a>
 </div>
-<script src="assets/js/github-tabs.js"></script>
+
+<script>
+window.addEventListener('load', function() {
+    // Create and append scroll-to-top button
+    const scrollBtn = document.createElement('button');
+    scrollBtn.className = 'scroll-top';
+    scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(scrollBtn);
+
+    // Handle scroll events for the scroll-to-top button
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    });
+
+    // Smooth scroll to top when button is clicked
+    scrollBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Add animation to highlight boxes
+    const highlights = document.querySelectorAll('.highlight-box');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    highlights.forEach(box => {
+        box.style.opacity = '0';
+        box.style.transform = 'translateY(20px)';
+        box.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(box);
+    });
+
+    // Add page transition class
+    document.body.classList.add('page-content');
+
+    // Handle GitHub tabs
+    const githubNavItems = document.querySelectorAll('.github-nav .nav-item');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    githubNavItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Remove active class from all nav items and sections
+            githubNavItems.forEach(nav => nav.classList.remove('active'));
+            contentSections.forEach(section => section.classList.remove('active'));
+
+            // Add active class to clicked nav item and corresponding section
+            this.classList.add('active');
+            const targetId = this.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+});
+</script>

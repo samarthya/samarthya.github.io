@@ -6,8 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Samarthya">
-<meta name="dcterms.date" content="2025-10-03">
 
 <title>Welcome! – Samarthya: Github Portfolio</title>
 <style>
@@ -40,10 +38,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c55b07ed742b9fc01ab2924a6c4bcc35.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-c6b9f07ff95f1e730ee9538d7af02911.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-c55b07ed742b9fc01ab2924a6c4bcc35.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e918efbb858fbc7fba7c50e4e73c9085.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d6dea7191d8ab34b8a7b81e465b405c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-9b8e7a1935202e58d007c33cbf0f1194.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d6dea7191d8ab34b8a7b81e465b405c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,6 +73,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -84,7 +87,169 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -118,6 +283,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -131,18 +297,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Index</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome! 👋</a>
-  <ul class="collapse">
-  <li><a href="#about-me" id="toc-about-me" class="nav-link" data-scroll-target="#about-me">About Me</a></li>
+  <li><a href="#about-me" id="toc-about-me" class="nav-link active" data-scroll-target="#about-me">About Me</a></li>
   <li><a href="#expertise" id="toc-expertise" class="nav-link" data-scroll-target="#expertise">Expertise</a></li>
+  <li><a href="#experience-highlights" id="toc-experience-highlights" class="nav-link" data-scroll-target="#experience-highlights">Experience Highlights</a></li>
   <li><a href="#professional-philosophy" id="toc-professional-philosophy" class="nav-link" data-scroll-target="#professional-philosophy">Professional Philosophy</a></li>
   <li><a href="#latest-blog-posts" id="toc-latest-blog-posts" class="nav-link" data-scroll-target="#latest-blog-posts">Latest Blog Posts</a></li>
-  </ul></li>
   </ul>
 <div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://blog.samarthya.me/"><i class="bi bi-file-person"></i>Blogs</a></li></ul></div><div class="quarto-code-links"><h2>Code Links</h2><ul><li><a href="https://blog.samarthya.me/wps/contact/"><i class="bi bi-person-rolodex"></i>Contact me</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -154,19 +319,7 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta column-page-left">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p><a href="https://smarthya.me">Samarthya</a> </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 3, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -176,8 +329,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level1">
-<h1>Welcome! 👋</h1>
 <p>I’m Saurabh, a passionate technologist and software engineering professional. This space serves as a window into my professional journey, projects, and technical insights.</p>
 <section id="about-me" class="level2">
 <h2 class="anchored" data-anchor-id="about-me">About Me</h2>
@@ -185,29 +336,136 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="expertise" class="level2">
 <h2 class="anchored" data-anchor-id="expertise">Expertise</h2>
-<div class="grid">
-<section id="technical-skills" class="level3 g-col-6">
-<h3 class="anchored" data-anchor-id="technical-skills">Technical Skills</h3>
-<ul>
-<li><i class="fas fa-cloud"></i> Cloud Architecture &amp; Development</li>
-<li><i class="fas fa-network-wired"></i> Distributed Systems</li>
-<li><i class="fas fa-code"></i> Full Stack Development</li>
-<li><i class="fas fa-drafting-compass"></i> System Design &amp; Architecture</li>
-<li><i class="fas fa-infinity"></i> DevOps &amp; CI/CD</li>
-<li><i class="fas fa-tasks"></i> Agile Methodologies</li>
-</ul>
+<div class="expertise-grid">
+  <div class="expertise-card">
+    <div class="expertise-header">
+      <i class="fas fa-cogs"></i>
+      <h3 class="anchored">Technical Skills</h3>
+    </div>
+    <div class="expertise-content">
+      <div class="skill-item">
+        <i class="fas fa-cloud"></i>
+        <span>Cloud Architecture &amp; Development</span>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-network-wired"></i>
+        <span>Distributed Systems</span>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-code"></i>
+        <span>Full Stack Development</span>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-drafting-compass"></i>
+        <span>System Design &amp; Architecture</span>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-infinity"></i>
+        <span>DevOps &amp; CI/CD</span>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-tasks"></i>
+        <span>Agile Methodologies</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="expertise-card">
+    <div class="expertise-header">
+      <i class="fas fa-laptop-code"></i>
+      <h3 class="anchored">Core Technologies</h3>
+    </div>
+    <div class="expertise-content">
+      <div class="skill-item">
+        <i class="fab fa-java"></i>
+        <span>Java &amp; Spring Framework</span>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-aws"></i>
+        <span>Cloud Platforms (GCP/AWS/Azure)</span>
+      </div>
+      <div class="skill-item">
+        <i class="fab fa-docker"></i>
+        <span>Containerization (Docker, K8s)</span>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-microchip"></i>
+        <span>Microservices Architecture</span>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-database"></i>
+        <span>Database Systems</span>
+      </div>
+      <div class="skill-item">
+        <i class="fas fa-plug"></i>
+        <span>REST/GraphQL APIs</span>
+      </div>
+    </div>
+  </div>
+</div>
 </section>
-<section id="core-technologies" class="level3 g-col-6">
-<h3 class="anchored" data-anchor-id="core-technologies">Core Technologies</h3>
-<ul>
-<li><i class="fab fa-java"></i> Java &amp; Spring Framework</li>
-<li><i class="fab fa-aws"></i> Cloud Platforms (GCP/AWS/Azure)</li>
-<li><i class="fab fa-docker"></i> Containerization (Docker, Kubernetes)</li>
-<li><i class="fas fa-microchip"></i> Microservices Architecture</li>
-<li><i class="fas fa-database"></i> Database Systems</li>
-<li><i class="fas fa-plug"></i> REST/GraphQL APIs</li>
-</ul>
-</section>
+<section id="experience-highlights" class="level2">
+<h2 class="anchored" data-anchor-id="experience-highlights">Experience Highlights</h2>
+<div class="stats-grid">
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-history"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">20+</div>
+      <div class="stat-label">Years</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-rocket"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Projects</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-award"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">30+</div>
+      <div class="stat-label">Certs</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-layer-group"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">15+</div>
+      <div class="stat-label">Stacks</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-brain"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">5+</div>
+      <div class="stat-label">ML Models</div>
+    </div>
+  </div>
+
+  <div class="stat-card">
+    <div class="stat-icon">
+      <i class="fas fa-cloud"></i>
+    </div>
+    <div class="stat-content">
+      <div class="stat-number">3+</div>
+      <div class="stat-label">Clouds</div>
+    </div>
+  </div>
 </div>
 </section>
 <section id="professional-philosophy" class="level2">
@@ -260,11 +518,23 @@ ul.task-list li input[type="checkbox"] {
 
 
 </section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {
@@ -350,6 +620,13 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -673,7 +950,75 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </a>
 </div>
-<script src="assets/js/github-tabs.js"></script>
+
+<script>
+window.addEventListener('load', function() {
+    // Create and append scroll-to-top button
+    const scrollBtn = document.createElement('button');
+    scrollBtn.className = 'scroll-top';
+    scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(scrollBtn);
+
+    // Handle scroll events for the scroll-to-top button
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    });
+
+    // Smooth scroll to top when button is clicked
+    scrollBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Add animation to highlight boxes
+    const highlights = document.querySelectorAll('.highlight-box');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    highlights.forEach(box => {
+        box.style.opacity = '0';
+        box.style.transform = 'translateY(20px)';
+        box.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(box);
+    });
+
+    // Add page transition class
+    document.body.classList.add('page-content');
+
+    // Handle GitHub tabs
+    const githubNavItems = document.querySelectorAll('.github-nav .nav-item');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    githubNavItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Remove active class from all nav items and sections
+            githubNavItems.forEach(nav => nav.classList.remove('active'));
+            contentSections.forEach(section => section.classList.remove('active'));
+
+            // Add active class to clicked nav item and corresponding section
+            this.classList.add('active');
+            const targetId = this.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
+        });
+    });
+});
+</script>
 <div class="page-footer">
     <div class="social-links">
         <a href="mailto:mailme@samarthya.me" title="Email"><i class="fas fa-envelope"></i></a>
@@ -690,4 +1035,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
