@@ -44,7 +44,8 @@ format:
     footnotes-hover: true
     include-in-header:
       - file: assets/includes/head.html
+      - file: assets/includes/ga.html
     include-after-body:
       - file: assets/includes/brand.html
       - file: assets/includes/footer.html
-      - file: assets/includes/ga.html
+
