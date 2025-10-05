@@ -47,3 +47,4 @@ format:
     include-after-body:
       - file: assets/includes/brand.html
       - file: assets/includes/footer.html
+      - file: assets/includes/ga.html
