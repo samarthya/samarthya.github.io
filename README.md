@@ -16,7 +16,7 @@ samarthya.github.io/
     └── quartopublish.yml # Deployment workflow
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 Attempt at redoing my profile page via Quarto! It is good that Boston University started with this. Gave a good idea around how old the previous deployment was!!
 
@@ -54,7 +54,7 @@ Process I followed!
    quarto preview
    ```
 
-## 🎨 Customization
+## Customization
 
 ### Styling
 
@@ -75,7 +75,7 @@ Process I followed!
    - Cross-references
    - Citations
 
-## 🔧 Tools & Technologies
+## Tools & Technologies
 
 - **[Quarto](https://quarto.org/)**: Main publishing system
 - **[Python](https://www.python.org/)**: For computational content
@@ -83,7 +83,7 @@ Process I followed!
 - **[GitHub Actions](https://github.com/features/actions)**: CI/CD deployment
 - **[GitHub Pages](https://pages.github.com/)**: Hosting
 
-## 📦 Dependencies
+## Dependencies
 
 - Quarto extensions and features used:
   - HTML format with `journal` theme
@@ -91,7 +91,7 @@ Process I followed!
   - Custom CSS
   - Font Awesome integration
 
-## 🚀 Deployment
+## Deployment
 
 The site is automatically deployed to GitHub Pages using GitHub Actions workflow defined in `.github/workflows/publish.yml`.
 
@@ -102,7 +102,7 @@ The deployment process:
 3. Builds the website
 4. Publishes to GitHub Pages
 
-## 📧 Contact
+## Contact
 
 - Website: [samarthya.me](https://samarthya.me)
 - GitHub: [@samarthya](https://github.com/samarthya)
