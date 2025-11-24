@@ -78,8 +78,8 @@ def fetch_github_activity(username="samarthya", days=30):
             return []
         
         events = response.json()
-    except Exception:
-        # Broad exception handling for network/API failures (timeouts, rate limits, etc.)
+    except (requests.RequestException, requests.Timeout, ValueError, json.JSONDecodeError):
+        # Handle network/API failures and JSON parsing errors gracefully
         # Return empty list to allow site to render gracefully even when GitHub API is unavailable
         return []
 
