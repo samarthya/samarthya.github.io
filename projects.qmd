@@ -224,13 +224,13 @@ if repos:
 
             # Fix language color display
             language = repo.get('language')
-            language_color = language.lower() if language else '#888'
-            if language_color == 'java':
-                language_color = '#b07219'  # Standard GitHub color for Java
-            elif language_color == 'python':
-                language_color = '#3572A5'  # Standard GitHub color for Python
-            elif language_color == 'javascript':
-                language_color = '#f1e05a'  # Standard GitHub color for JavaScript
+            language_colors = {
+                'java': '#b07219',
+                'python': '#3572A5',
+                'javascript': '#f1e05a',
+                # Add more languages as needed
+            }
+            language_color = language_colors.get(language.lower(), '#888') if language else '#888'
 
             html_content += f"""
             <div class="project-card">
