@@ -243,9 +243,8 @@ if repos:
                 <div class="updated">Last updated: {updated_at}</div>
             </div>
             """
-        except Exception:
-            # Skip individual repos that cause unexpected errors (malformed data, parsing issues)
-            # Allows processing to continue for remaining repos
+        except (KeyError, TypeError, ValueError, AttributeError):
+            # Skip individual repos with parsing errors
             continue
     html_content += '</div>'
 
