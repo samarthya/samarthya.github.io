@@ -63,7 +63,8 @@ def format_event_details(event):
             'repo_url': f"https://github.com/{repo_name}"
         }
     except Exception:
-        # Skip events that cause unexpected errors
+        # Broad exception handling to ensure site renders even with malformed events
+        # During static site generation, we prefer graceful degradation over crashes
         return None
 
 def fetch_github_activity(username="samarthya", days=30):
@@ -78,7 +79,8 @@ def fetch_github_activity(username="samarthya", days=30):
         
         events = response.json()
     except Exception:
-        # If API call fails, return empty list to allow site to render
+        # Broad exception handling for network/API failures (timeouts, rate limits, etc.)
+        # Return empty list to allow site to render gracefully even when GitHub API is unavailable
         return []
 
     # Process and format events
@@ -120,17 +122,13 @@ def fetch_github_activity(username="samarthya", days=30):
             elif event_type == 'IssuesEvent':
                 action = payload.get('action', 'updated')
                 issue = payload.get('issue', {})
-                issue_title = issue.get('title')
-                if not issue_title:
-                    continue
+                issue_title = issue.get('title', '(no title)')
                 description = f"{action.capitalize()} issue in {repo_name}"
                 details = f"• {issue_title}"
             elif event_type == 'PullRequestEvent':
                 action = payload.get('action', 'updated')
                 pull_request = payload.get('pull_request', {})
-                pr_title = pull_request.get('title')
-                if not pr_title:
-                    continue
+                pr_title = pull_request.get('title', '(no title)')
                 description = f"{action.capitalize()} pull request in {repo_name}"
                 details = f"• {pr_title}"
             else:
@@ -143,7 +141,8 @@ def fetch_github_activity(username="samarthya", days=30):
                 'repo_url': f"https://github.com/{repo_name}"
             })
         except Exception:
-            # Skip events that cause unexpected errors
+            # Skip individual events that cause unexpected errors (malformed data, parsing issues)
+            # Allows processing to continue for remaining events
             continue
 
     return formatted_events
@@ -203,7 +202,8 @@ def fetch_github_repos(username="samarthya"):
             # Sort by stars and get top 5
             return sorted(repos, key=lambda x: (x.get('stargazers_count', 0), x.get('forks_count', 0)), reverse=True)[:5]
     except Exception:
-        # If API call fails, return empty list to allow site to render
+        # Broad exception handling for network/API failures (timeouts, rate limits, etc.)
+        # Pass to fall through to return [] below
         pass
     
     return []
@@ -245,7 +245,8 @@ if repos:
             </div>
             """
         except Exception:
-            # Skip repos that cause unexpected errors
+            # Skip individual repos that cause unexpected errors (malformed data, parsing issues)
+            # Allows processing to continue for remaining repos
             continue
     html_content += '</div>'
 
