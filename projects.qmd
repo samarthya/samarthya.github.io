@@ -140,9 +140,8 @@ def fetch_github_activity(username="samarthya", days=30):
                 'details': details,
                 'repo_url': f"https://github.com/{repo_name}"
             })
-        except Exception:
-            # Skip individual events that cause unexpected errors (malformed data, parsing issues)
-            # Allows processing to continue for remaining events
+        except (KeyError, TypeError, AttributeError, ValueError):
+            # Skip individual events with parsing errors
             continue
 
     return formatted_events
