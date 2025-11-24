@@ -19,7 +19,7 @@ format:
 #| raw: true
 
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import json
 from IPython.display import HTML, display
 
@@ -83,7 +83,7 @@ def fetch_github_activity(username="samarthya", days=30):
 
     # Process and format events
     formatted_events = []
-    cutoff_time = datetime.utcnow() - timedelta(days=days)
+    cutoff_time = datetime.now(timezone.utc) - timedelta(days=days)
     
     for event in events:
         try:
@@ -91,7 +91,7 @@ def fetch_github_activity(username="samarthya", days=30):
             if not created_at:
                 continue
                 
-            event_time = datetime.strptime(created_at, '%Y-%m-%dT%H:%M:%SZ')
+            event_time = datetime.strptime(created_at, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
 
             # Skip events older than specified days
             if event_time < cutoff_time:
