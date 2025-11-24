@@ -25,92 +25,126 @@ from IPython.display import HTML, display
 
 def format_event_details(event):
     """Format event details based on event type"""
-    event_type = event['type']
-    repo_name = event['repo']['name']
+    try:
+        event_type = event.get('type')
+        repo = event.get('repo', {})
+        repo_name = repo.get('name', 'unknown')
+        payload = event.get('payload', {})
 
-    if event_type == 'PushEvent':
-        commits = event['payload'].get('commits', [])
-        commit_messages = [commit['message'] for commit in commits]
-        description = f"Pushed {len(commits)} commit(s) to {repo_name}"
-        details = "<br>".join(f"• {msg}" for msg in commit_messages[:3])
-        if len(commits) > 3:
-            details += "<br>• ..."
-    elif event_type == 'CreateEvent':
-        ref_type = event['payload']['ref_type']
-        description = f"Created {ref_type} in {repo_name}"
-        details = ""
-    elif event_type == 'IssuesEvent':
-        action = event['payload']['action']
-        issue_title = event['payload']['issue']['title']
-        description = f"{action.capitalize()} issue in {repo_name}"
-        details = f"• {issue_title}"
-    elif event_type == 'PullRequestEvent':
-        action = event['payload']['action']
-        pr_title = event['payload']['pull_request']['title']
-        description = f"{action.capitalize()} pull request in {repo_name}"
-        details = f"• {pr_title}"
-    else:
-        return None
-
-    return {
-        'description': description,
-        'details': details,
-        'repo_url': f"https://github.com/{repo_name}"
-    }
-
-def fetch_github_activity(username="samarthya", days=30):
-    # Get user events
-    url = f"https://api.github.com/users/{username}/events/public"
-    response = requests.get(url)
-
-    if response.status_code != 200:
-        return []
-
-    events = response.json()
-
-    # Process and format events
-    formatted_events = []
-    for event in events:
-        event_time = datetime.strptime(event['created_at'], '%Y-%m-%dT%H:%M:%SZ')
-
-        # Skip events older than specified days
-        if event_time < datetime.now() - timedelta(days=days):
-            continue
-
-        event_type = event['type']
-        repo_name = event['repo']['name']
-
-        # Format the event description based on type
         if event_type == 'PushEvent':
-            commits = event['payload'].get('commits', [])
-            commit_messages = [commit['message'] for commit in commits]
+            commits = payload.get('commits', [])
+            commit_messages = [commit.get('message', '(no message)') for commit in commits if isinstance(commit, dict)]
             description = f"Pushed {len(commits)} commit(s) to {repo_name}"
             details = "<br>".join(f"• {msg}" for msg in commit_messages[:3])
             if len(commits) > 3:
                 details += "<br>• ..."
         elif event_type == 'CreateEvent':
-            ref_type = event['payload']['ref_type']
+            ref_type = payload.get('ref_type', 'ref')
             description = f"Created {ref_type} in {repo_name}"
             details = ""
         elif event_type == 'IssuesEvent':
-            action = event['payload']['action']
-            issue_title = event['payload']['issue']['title']
+            action = payload.get('action', 'updated')
+            issue = payload.get('issue', {})
+            issue_title = issue.get('title', '(no title)')
             description = f"{action.capitalize()} issue in {repo_name}"
             details = f"• {issue_title}"
         elif event_type == 'PullRequestEvent':
-            action = event['payload']['action']
-            pr_title = event['payload']['pull_request']['title']
+            action = payload.get('action', 'updated')
+            pull_request = payload.get('pull_request', {})
+            pr_title = pull_request.get('title', '(no title)')
             description = f"{action.capitalize()} pull request in {repo_name}"
             details = f"• {pr_title}"
         else:
-            continue
+            return None
 
-        formatted_events.append({
-            'date': event_time.strftime('%B %d, %Y'),
+        return {
             'description': description,
             'details': details,
             'repo_url': f"https://github.com/{repo_name}"
-        })
+        }
+    except Exception:
+        # Skip events that cause unexpected errors
+        return None
+
+def fetch_github_activity(username="samarthya", days=30):
+    # Get user events
+    url = f"https://api.github.com/users/{username}/events/public"
+    
+    try:
+        response = requests.get(url, timeout=10)
+        
+        if response.status_code != 200:
+            return []
+        
+        events = response.json()
+    except Exception:
+        # If API call fails, return empty list to allow site to render
+        return []
+
+    # Process and format events
+    formatted_events = []
+    cutoff_time = datetime.utcnow() - timedelta(days=days)
+    
+    for event in events:
+        try:
+            created_at = event.get('created_at')
+            if not created_at:
+                continue
+                
+            event_time = datetime.strptime(created_at, '%Y-%m-%dT%H:%M:%SZ')
+
+            # Skip events older than specified days
+            if event_time < cutoff_time:
+                continue
+
+            event_type = event.get('type')
+            repo = event.get('repo', {})
+            repo_name = repo.get('name')
+            payload = event.get('payload', {})
+            
+            if not event_type or not repo_name:
+                continue
+
+            # Format the event description based on type
+            if event_type == 'PushEvent':
+                commits = payload.get('commits', [])
+                commit_messages = [commit.get('message', '(no message)') for commit in commits if isinstance(commit, dict)]
+                description = f"Pushed {len(commits)} commit(s) to {repo_name}"
+                details = "<br>".join(f"• {msg}" for msg in commit_messages[:3])
+                if len(commits) > 3:
+                    details += "<br>• ..."
+            elif event_type == 'CreateEvent':
+                ref_type = payload.get('ref_type', 'ref')
+                description = f"Created {ref_type} in {repo_name}"
+                details = ""
+            elif event_type == 'IssuesEvent':
+                action = payload.get('action', 'updated')
+                issue = payload.get('issue', {})
+                issue_title = issue.get('title')
+                if not issue_title:
+                    continue
+                description = f"{action.capitalize()} issue in {repo_name}"
+                details = f"• {issue_title}"
+            elif event_type == 'PullRequestEvent':
+                action = payload.get('action', 'updated')
+                pull_request = payload.get('pull_request', {})
+                pr_title = pull_request.get('title')
+                if not pr_title:
+                    continue
+                description = f"{action.capitalize()} pull request in {repo_name}"
+                details = f"• {pr_title}"
+            else:
+                continue
+
+            formatted_events.append({
+                'date': event_time.strftime('%B %d, %Y'),
+                'description': description,
+                'details': details,
+                'repo_url': f"https://github.com/{repo_name}"
+            })
+        except Exception:
+            # Skip events that cause unexpected errors
+            continue
 
     return formatted_events
 
@@ -161,46 +195,64 @@ from IPython.display import HTML, display
 
 def fetch_github_repos(username="samarthya"):
     url = f"https://api.github.com/users/{username}/repos"
-    response = requests.get(url)
-    if response.status_code == 200:
-        repos = response.json()
-        # Sort by stars and get top 5
-        return sorted(repos, key=lambda x: (x['stargazers_count'], x['forks_count']), reverse=True)[:5]
+    
+    try:
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            repos = response.json()
+            # Sort by stars and get top 5
+            return sorted(repos, key=lambda x: (x.get('stargazers_count', 0), x.get('forks_count', 0)), reverse=True)[:5]
+    except Exception:
+        # If API call fails, return empty list to allow site to render
+        pass
+    
     return []
 
 repos = fetch_github_repos()
 
-# Build HTML content
-html_content = '<div class="projects-grid">'
-for repo in repos:
-    # Format date
-    updated_at = datetime.strptime(repo['updated_at'], '%Y-%m-%dT%H:%M:%SZ').strftime('%B %d, %Y')
+if repos:
+    # Build HTML content
+    html_content = '<div class="projects-grid">'
+    for repo in repos:
+        try:
+            # Format date with safe access
+            updated_at_str = repo.get('updated_at')
+            if updated_at_str:
+                updated_at = datetime.strptime(updated_at_str, '%Y-%m-%dT%H:%M:%SZ').strftime('%B %d, %Y')
+            else:
+                updated_at = 'Unknown'
 
-    # Fix language color display
-    language_color = repo['language'].lower() if repo['language'] else '#888'
-    if language_color == 'java':
-        language_color = '#b07219'  # Standard GitHub color for Java
-    elif language_color == 'python':
-        language_color = '#3572A5'  # Standard GitHub color for Python
-    elif language_color == 'javascript':
-        language_color = '#f1e05a'  # Standard GitHub color for JavaScript
+            # Fix language color display
+            language = repo.get('language')
+            language_color = language.lower() if language else '#888'
+            if language_color == 'java':
+                language_color = '#b07219'  # Standard GitHub color for Java
+            elif language_color == 'python':
+                language_color = '#3572A5'  # Standard GitHub color for Python
+            elif language_color == 'javascript':
+                language_color = '#f1e05a'  # Standard GitHub color for JavaScript
 
-    html_content += f"""
-    <div class="project-card">
-        <h3><a href="{repo['html_url']}" target="_blank">{repo['name']}</a></h3>
-        <p class="description">{repo['description'] or 'No description available'}</p>
-        <div class="stats">
-            <span><i class="fas fa-star"></i> {repo['stargazers_count']}</span>
-            <span><i class="fas fa-code-branch"></i> {repo['forks_count']}</span>
-            <span><i class="fas fa-circle" style="color: {language_color};"></i> {repo['language'] or 'Unknown'}</span>
-        </div>
-        <div class="updated">Last updated: {updated_at}</div>
-    </div>
-    """
-html_content += '</div>'
+            html_content += f"""
+            <div class="project-card">
+                <h3><a href="{repo.get('html_url', '#')}" target="_blank">{repo.get('name', 'Unknown')}</a></h3>
+                <p class="description">{repo.get('description') or 'No description available'}</p>
+                <div class="stats">
+                    <span><i class="fas fa-star"></i> {repo.get('stargazers_count', 0)}</span>
+                    <span><i class="fas fa-code-branch"></i> {repo.get('forks_count', 0)}</span>
+                    <span><i class="fas fa-circle" style="color: {language_color};"></i> {language or 'Unknown'}</span>
+                </div>
+                <div class="updated">Last updated: {updated_at}</div>
+            </div>
+            """
+        except Exception:
+            # Skip repos that cause unexpected errors
+            continue
+    html_content += '</div>'
 
-# Display the HTML content
-display(HTML(html_content))
+    # Display the HTML content
+    display(HTML(html_content))
+else:
+    display(HTML('<p>No GitHub repositories to display.</p>'))
 ```
 
 :::{.callout-note}
