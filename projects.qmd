@@ -200,8 +200,8 @@ def fetch_github_repos(username="samarthya"):
             repos = response.json()
             # Sort by stars and get top 5
             return sorted(repos, key=lambda x: (x.get('stargazers_count', 0), x.get('forks_count', 0)), reverse=True)[:5]
-    except Exception:
-        # Broad exception handling for network/API failures (timeouts, rate limits, etc.)
+    except (requests.RequestException, ValueError, json.JSONDecodeError):
+        # Handle network/API failures (timeouts, rate limits, JSON errors, etc.)
         # Pass to fall through to return [] below
         pass
     
