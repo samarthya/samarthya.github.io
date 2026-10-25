@@ -1,18 +1,18 @@
 /*-- scss:defaults --*/
 
 // Colors
-$primary: #0056b3;
-$secondary: #6c757d;
+$primary: #c2410c;
+$secondary: #57534e;
 $success: #28a745;
 $info: #17a2b8;
 $warning: #ffc107;
 $danger: #dc3545;
-$light: #f8f9fa;
-$dark: #343a40;
+$light: #fafaf9;
+$dark: #1c1917;
 
 // Base document colors
 $body-bg: #ffffff;
-$body-color: #2c3e50;
+$body-color: #44403c;
 $link-color: $primary;
 $selection-bg: lighten($primary, 50%);
 
@@ -27,12 +27,12 @@ $navbar-fg: $body-color;
 $navbar-hl: $primary;
 
 // Cards
-$card-border-color: #e1e4e8;
+$card-border-color: #e7e5e4;
 $card-cap-bg: $light;
 
 // Code blocks
-$code-block-bg: #f8f9fa;
-$code-block-border-color: #e1e4e8;
+$code-block-bg: #fafaf9;
+$code-block-border-color: #e7e5e4;
 
 /*-- scss:rules --*/
 
