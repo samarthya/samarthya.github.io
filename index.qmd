@@ -12,11 +12,11 @@ format:
     other-links:
       - text: Blogs
         icon: file-person
-        href: https://blog.samarthya.me/
+        href: https://samarthya.me/
     code-links:
       - text: Contact me
         icon: person-rolodex
-        href: https://blog.samarthya.me/wps/contact/
+        href: https://samarthya.me/contact/
 ---
 
 I'm Saurabh, a passionate technologist and software engineering professional. This space serves as a window into my professional journey, projects, and technical insights.
@@ -186,22 +186,29 @@ from dateutil import parser
 from bs4 import BeautifulSoup
 from IPython.display import HTML
 
-def fetch_wordpress_posts(url="https://blog.samarthya.me/wps/wp-json/wp/v2/posts", limit=3):
-    params = {
-        'per_page': limit,
-        'orderby': 'date',
-        'order': 'desc',
-        '_embed': 1
-    }
+def fetch_wordpress_posts(url="https://samarthya.me/latest.json", limit=3):
+    """Latest posts from the blog's JSON feed (samarthya.me/latest.json).
 
+    The blog moved from WordPress to a static Hugo site in Oct 2026. The items are returned in the
+    same shape as the old WordPress REST API, so the rendering code below is unchanged.
+    """
     try:
-        response = requests.get(url, params=params)
+        response = requests.get(url, timeout=20)
         response.raise_for_status()
-        return response.json()
+        posts = response.json().get("posts", [])[:limit]
     except Exception as e:
         print(f"Error fetching posts: {e}")
         return []
-
+    return [{
+        "title": {"rendered": p["title"]},
+        "link": p["url"],
+        "excerpt": {"rendered": p.get("summary", "")},
+        "date": p["date"],
+        "_embedded": {
+            "wp:featuredmedia": [{"source_url": p["image"]}] if p.get("image") else [],
+            "wp:term": [[{"taxonomy": "category", "name": p.get("topic", "Blog")}]],
+        },
+    } for p in posts]
 def get_featured_image(post):
     if '_embedded' in post and 'wp:featuredmedia' in post['_embedded']:
         media = post['_embedded']['wp:featuredmedia'][0]

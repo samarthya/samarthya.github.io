@@ -20,7 +20,7 @@ format:
         <a href="https://github.com/samarthya" target="_blank" class="social-icon" aria-label="GitHub">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://blog.samarthya.me" target="_blank" class="social-icon" aria-label="Blog">
+        <a href="https://samarthya.me/posts/" target="_blank" class="social-icon" aria-label="Blog">
           <i class="fas fa-blog"></i>
         </a>
         <a href="mailto:mailme@samarthya.me" class="social-icon" aria-label="Email">
@@ -181,22 +181,29 @@ def format_time_ago(dt):
 from bs4 import BeautifulSoup
 from IPython.display import HTML
 
-def fetch_wordpress_posts(url="https://blog.samarthya.me/wps/wp-json/wp/v2/posts", limit=6):
-    params = {
-        'per_page': limit,
-        'orderby': 'date',
-        'order': 'desc',
-        '_embed': 1  # Include featured media and other embedded content
-    }
+def fetch_wordpress_posts(url="https://samarthya.me/latest.json", limit=6):
+    """Latest posts from the blog's JSON feed (samarthya.me/latest.json).
 
+    The blog moved from WordPress to a static Hugo site in Oct 2026. The items are returned in the
+    same shape as the old WordPress REST API, so the rendering code below is unchanged.
+    """
     try:
-        response = requests.get(url, params=params)
+        response = requests.get(url, timeout=20)
         response.raise_for_status()
-        return response.json()
+        posts = response.json().get("posts", [])[:limit]
     except Exception as e:
         print(f"Error fetching posts: {e}")
         return []
-
+    return [{
+        "title": {"rendered": p["title"]},
+        "link": p["url"],
+        "excerpt": {"rendered": p.get("summary", "")},
+        "date": p["date"],
+        "_embedded": {
+            "wp:featuredmedia": [{"source_url": p["image"]}] if p.get("image") else [],
+            "wp:term": [[{"taxonomy": "category", "name": p.get("topic", "Blog")}]],
+        },
+    } for p in posts]
 def get_featured_image(post):
     if '_embedded' in post and 'wp:featuredmedia' in post['_embedded']:
         media = post['_embedded']['wp:featuredmedia'][0]
