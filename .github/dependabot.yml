@@ -1,0 +1,11 @@
+# Keep the GitHub Actions used by the publish workflow up to date (one grouped pull request a month).
+# Python dependency security fixes still arrive through Dependabot security updates.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      actions:
+        patterns: ["*"]

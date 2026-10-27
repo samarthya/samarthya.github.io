@@ -102,6 +102,12 @@ The deployment process:
 3. Builds the website
 4. Publishes to GitHub Pages
 
+## Licence, security and contributions
+
+Content © Samarthya. All rights reserved (see [LICENSE](LICENSE)). This is a personal, owner-only
+repository: contributions aren't accepted ([CONTRIBUTING.md](CONTRIBUTING.md)). Report security problems
+privately as described in [SECURITY.md](SECURITY.md).
+
 ## Contact
 
 - Website: [samarthya.me](https://samarthya.me)

@@ -3,10 +3,9 @@ on:
   push:
     branches:
       - master
+# Publishing pushes the rendered site to the gh-pages branch, which needs only contents: write.
 permissions:
   contents: write
-  pages: write
-  id-token: write
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
