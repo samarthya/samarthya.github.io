@@ -3,6 +3,18 @@ on:
   push:
     branches:
       - master
+  # The blog (samarthya/blog.samarthya.me) sends this after each deploy, so "Latest Blog Posts" stays current.
+  repository_dispatch:
+    types: [blog-published]
+  # A daily rebuild as a fallback, and a "Run workflow" button for a manual refresh.
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+# A blog post and a push arriving together should not render the site twice in parallel.
+concurrency:
+  group: publish
+  cancel-in-progress: true
 # Publishing pushes the rendered site to the gh-pages branch, which needs only contents: write.
 permissions:
   contents: write
