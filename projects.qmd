@@ -18,163 +18,120 @@ format:
 #| output: asis
 #| raw: true
 
-import requests
+# GitHub's public events API stopped including commits in PushEvent payloads (only before/head/ref/push_id
+# are left), which is why every push used to read "Pushed 0 commit(s)". Commits now come from the compare API
+# (before...head), one call per push, and pushes are grouped per repository per day.
+# Every text from the API is HTML-escaped before it goes into the page.
+import html
+import os
+from collections import OrderedDict
 from datetime import datetime, timedelta, timezone
-import json
+
+import requests
 from IPython.display import HTML, display
 
-def format_event_details(event):
-    """Format event details based on event type"""
+API = "https://api.github.com"
+session = requests.Session()
+session.headers.update({"Accept": "application/vnd.github+json", "User-Agent": "samarthya.github.io-build"})
+if os.environ.get("GITHUB_TOKEN"):  # set in the publish workflow: 1,000+ requests/hour instead of 60
+    session.headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
+
+ZERO_SHA = "0" * 40
+
+
+def get_json(url, **params):
     try:
-        event_type = event.get('type')
-        repo = event.get('repo', {})
-        repo_name = repo.get('name', 'unknown')
-        payload = event.get('payload', {})
-
-        if event_type == 'PushEvent':
-            commits = payload.get('commits', [])
-            commit_messages = [commit.get('message', '(no message)') for commit in commits if isinstance(commit, dict)]
-            description = f"Pushed {len(commits)} commit(s) to {repo_name}"
-            details = "<br>".join(f"• {msg}" for msg in commit_messages[:3])
-            if len(commits) > 3:
-                details += "<br>• ..."
-        elif event_type == 'CreateEvent':
-            ref_type = payload.get('ref_type', 'ref')
-            description = f"Created {ref_type} in {repo_name}"
-            details = ""
-        elif event_type == 'IssuesEvent':
-            action = payload.get('action', 'updated')
-            issue = payload.get('issue', {})
-            issue_title = issue.get('title', '(no title)')
-            description = f"{action.capitalize()} issue in {repo_name}"
-            details = f"• {issue_title}"
-        elif event_type == 'PullRequestEvent':
-            action = payload.get('action', 'updated')
-            pull_request = payload.get('pull_request', {})
-            pr_title = pull_request.get('title', '(no title)')
-            description = f"{action.capitalize()} pull request in {repo_name}"
-            details = f"• {pr_title}"
-        else:
-            return None
-
-        return {
-            'description': description,
-            'details': details,
-            'repo_url': f"https://github.com/{repo_name}"
-        }
-    except Exception:
-        # Broad exception handling to ensure site renders even with malformed events
-        # During static site generation, we prefer graceful degradation over crashes
+        r = session.get(url, params=params, timeout=10)
+        return r.json() if r.status_code == 200 else None
+    except (requests.RequestException, ValueError):
         return None
 
-def fetch_github_activity(username="samarthya", days=30):
-    # Get user events
-    url = f"https://api.github.com/users/{username}/events/public"
-    
-    try:
-        response = requests.get(url, timeout=10)
-        
-        if response.status_code != 200:
-            return []
-        
-        events = response.json()
-    except (requests.RequestException, requests.Timeout, ValueError, json.JSONDecodeError):
-        # Handle network/API failures and JSON parsing errors gracefully
-        # Return empty list to allow site to render gracefully even when GitHub API is unavailable
-        return []
 
-    # Process and format events
-    formatted_events = []
-    cutoff_time = datetime.now(timezone.utc) - timedelta(days=days)
-    
+def first_line(message, limit=90):
+    line = (message or "(no message)").strip().splitlines()[0]
+    return line if len(line) <= limit else line[: limit - 1] + "…"
+
+
+def push_commits(repo_name, payload):
+    """(commit count, [first lines of messages]) for one push."""
+    before, head = payload.get("before"), payload.get("head")
+    if not head:
+        return 0, []
+    if before and before != ZERO_SHA:
+        cmp = get_json(f"{API}/repos/{repo_name}/compare/{before}...{head}")
+        if cmp and "commits" in cmp:
+            msgs = [first_line(c.get("commit", {}).get("message")) for c in cmp["commits"]]
+            return cmp.get("total_commits", len(msgs)), list(reversed(msgs))  # newest first
+    one = get_json(f"{API}/repos/{repo_name}/commits/{head}")  # new branch, force push, or compare failed
+    if one:
+        return 1, [first_line(one.get("commit", {}).get("message"))]
+    return 1, []
+
+
+def describe(event):
+    """(summary key, text, details list, commits) for the event types shown, else None."""
+    kind, repo, payload = event.get("type"), event.get("repo", {}).get("name"), event.get("payload", {})
+    if not kind or not repo:
+        return None
+    if kind == "PushEvent":
+        n, msgs = push_commits(repo, payload)
+        return ("push", repo), None, msgs, n
+    if kind == "CreateEvent":
+        ref_type, ref = payload.get("ref_type", "ref"), payload.get("ref") or ""
+        return ("create", repo, ref), f"Created {ref_type} {ref}".rstrip() + f" in {repo}", [], 0
+    if kind == "IssuesEvent":
+        title = payload.get("issue", {}).get("title", "(no title)")
+        return ("issue", repo, title), f"{payload.get('action', 'updated').capitalize()} issue in {repo}", [title], 0
+    if kind == "PullRequestEvent":
+        title = payload.get("pull_request", {}).get("title", "(no title)")
+        return ("pr", repo, title), f"{payload.get('action', 'updated').capitalize()} pull request in {repo}", [title], 0
+    return None
+
+
+def fetch_github_activity(username="samarthya", days=30):
+    events = get_json(f"{API}/users/{username}/events/public", per_page=100) or []
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    days_map = OrderedDict()  # date -> OrderedDict(key -> item), newest first as the API returns them
     for event in events:
         try:
-            created_at = event.get('created_at')
-            if not created_at:
-                continue
-                
-            event_time = datetime.strptime(created_at, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
-
-            # Skip events older than specified days
-            if event_time < cutoff_time:
-                continue
-
-            event_type = event.get('type')
-            repo = event.get('repo', {})
-            repo_name = repo.get('name')
-            payload = event.get('payload', {})
-            
-            if not event_type or not repo_name:
-                continue
-
-            # Format the event description based on type
-            if event_type == 'PushEvent':
-                commits = payload.get('commits', [])
-                commit_messages = [commit.get('message', '(no message)') for commit in commits if isinstance(commit, dict)]
-                description = f"Pushed {len(commits)} commit(s) to {repo_name}"
-                details = "<br>".join(f"• {msg}" for msg in commit_messages[:3])
-                if len(commits) > 3:
-                    details += "<br>• ..."
-            elif event_type == 'CreateEvent':
-                ref_type = payload.get('ref_type', 'ref')
-                description = f"Created {ref_type} in {repo_name}"
-                details = ""
-            elif event_type == 'IssuesEvent':
-                action = payload.get('action', 'updated')
-                issue = payload.get('issue', {})
-                issue_title = issue.get('title', '(no title)')
-                description = f"{action.capitalize()} issue in {repo_name}"
-                details = f"• {issue_title}"
-            elif event_type == 'PullRequestEvent':
-                action = payload.get('action', 'updated')
-                pull_request = payload.get('pull_request', {})
-                pr_title = pull_request.get('title', '(no title)')
-                description = f"{action.capitalize()} pull request in {repo_name}"
-                details = f"• {pr_title}"
-            else:
-                continue
-
-            formatted_events.append({
-                'date': event_time.strftime('%B %d, %Y'),
-                'description': description,
-                'details': details,
-                'repo_url': f"https://github.com/{repo_name}"
-            })
-        except (KeyError, TypeError, AttributeError, ValueError):
-            # Skip individual events with parsing errors
+            when = datetime.strptime(event["created_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        except (KeyError, TypeError, ValueError):
             continue
+        if when < cutoff:
+            continue
+        found = describe(event)
+        if not found:
+            continue
+        key, text, details, commits = found
+        repo = event["repo"]["name"]
+        day = days_map.setdefault(when.strftime("%B %d, %Y"), OrderedDict())
+        item = day.setdefault(key, {"repo": repo, "text": text, "details": [], "commits": 0})
+        item["details"].extend(details)
+        item["commits"] += commits
+    return days_map
 
-    return formatted_events
 
-# Fetch and display activity
-events = fetch_github_activity()
+def render(days_map):
+    if not days_map:
+        return "<p>No recent GitHub activity to display.</p>"
+    out = ['<div class="activity-timeline">']
+    for day, items in days_map.items():
+        out.append(f'<div class="activity-date">{html.escape(day)}</div><div class="activity-group">')
+        for key, it in items.items():
+            text = it["text"] or f"Pushed {it['commits']} commit{'s' if it['commits'] != 1 else ''} to {it['repo']}"
+            shown = it["details"][:3]
+            more = len(it["details"]) - len(shown)
+            details = "<br>".join(f"• {html.escape(d)}" for d in shown) + (f"<br>• … and {more} more" if more > 0 else "")
+            out.append(
+                f'<div class="activity-item"><div class="activity-dot"></div><div class="activity-content">'
+                f'<a href="https://github.com/{html.escape(it["repo"])}" class="activity-link" target="_blank" '
+                f'rel="noopener">{html.escape(text)}</a><div class="activity-details">{details}</div></div></div>')
+        out.append("</div>")
+    out.append("</div>")
+    return "".join(out)
 
-if events:
-    html_content = '<div class="activity-timeline">'
-    current_date = None
 
-    for event in events:
-        if event['date'] != current_date:
-            if current_date is not None:
-                html_content += '</div>'
-            current_date = event['date']
-            html_content += f'<div class="activity-date">{current_date}</div><div class="activity-group">'
-
-        html_content += f'''
-        <div class="activity-item">
-            <div class="activity-dot"></div>
-            <div class="activity-content">
-                <a href="{event['repo_url']}" class="activity-link" target="_blank">{event['description']}</a>
-                <div class="activity-details">{event['details']}</div>
-            </div>
-        </div>
-        '''
-
-    html_content += '</div></div>'
-
-    display(HTML(html_content))
-else:
-    display(HTML('<p>No recent GitHub activity to display.</p>'))
+display(HTML(render(fetch_github_activity())))
 ```
 
 </div>
@@ -186,16 +143,20 @@ else:
 #| output: asis
 #| raw: true
 
-import requests
+import html
 import json
+import os
 from datetime import datetime
+
+import requests
 from IPython.display import HTML, display
 
 def fetch_github_repos(username="samarthya"):
     url = f"https://api.github.com/users/{username}/repos"
-    
+    headers = {"Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}"} if os.environ.get("GITHUB_TOKEN") else {}
+
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, params={"per_page": 100}, headers=headers, timeout=10)
         if response.status_code == 200:
             repos = response.json()
             # Sort by stars and get top 5
@@ -233,8 +194,8 @@ if repos:
 
             html_content += f"""
             <div class="project-card">
-                <h3><a href="{repo.get('html_url', '#')}" target="_blank">{repo.get('name', 'Unknown')}</a></h3>
-                <p class="description">{repo.get('description') or 'No description available'}</p>
+                <h3><a href="{html.escape(repo.get('html_url', '#'))}" target="_blank" rel="noopener">{html.escape(repo.get('name', 'Unknown'))}</a></h3>
+                <p class="description">{html.escape(repo.get('description') or 'No description available')}</p>
                 <div class="stats">
                     <span><i class="fas fa-star"></i> {repo.get('stargazers_count', 0)}</span>
                     <span><i class="fas fa-code-branch"></i> {repo.get('forks_count', 0)}</span>
